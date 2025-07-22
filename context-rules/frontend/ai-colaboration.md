@@ -9,6 +9,7 @@ These rules apply to all developers and AI agents (e.g. Cursor, GitHub Copilot, 
   - Improving comments and docstrings
   - Organizing and formatting code
   - Refactoring for clarity (when explicitly instructed)
+- When generating new features, components, or services, AI agents must also generate appropriate mock data files in `/src/mocks/` and ensure the new code uses these files as its data source until a real backend is available.
 
 ## Review Process
 

@@ -8,6 +8,7 @@
 4. **Performance** - Optimize for performance where possible  
 5. **Testing** - Write tests for complex components  
 6. **Reusability** - Design components to be reusable
+7. **Mock Data First** – For every new feature or API integration, provide mock data in `/src/mocks/` and ensure all service modules use this data until the backend is ready.
 
 ## Code Quality
 
