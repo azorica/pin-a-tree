@@ -69,4 +69,8 @@ For each stage, create:
 - Reference `/docs/Implementation.md` for the living implementation plan.
 - Reference `/docs/project_structure.md` for the current project structure.
 - Reference `/docs/UI_UX_doc.md` for UI/UX requirements.
+- Reference `/docs/architecture.md` for high-level system architecture and rationale.
+- Reference `/docs/product.md` for product vision, user types, and use cases.
+- Reference `/docs/tech-stack.md` for technology stack and tooling details.
 - Reference `/context-rules/` for engineering rules and best practices.
+- For every new feature, service, or API endpoint in the MVP (or when no backend is available), generate the corresponding mock data file(s) in `/src/mocks/` as part of the implementation plan. For post-MVP, use real backend integration.

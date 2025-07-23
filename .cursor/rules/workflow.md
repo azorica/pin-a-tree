@@ -69,4 +69,4 @@ Mark tasks complete only when:
 ## Integration with Project Documentation
 - This workflow is designed to work in tandem with `/docs/` and `/context-rules/`.
 - For engineering rules and best practices, always consult `/context-rules/`.
-- For high-level architecture, product, and tech stack, consult `/docs/`.
+- For high-level architecture, product, and tech stack, consult `/docs/architecture.md`, `/docs/product.md`, and `/docs/tech-stack.md`.
