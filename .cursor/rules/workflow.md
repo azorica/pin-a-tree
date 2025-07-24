@@ -5,6 +5,8 @@ alwaysApply: true
 ---
 # Development Agent Workflow - Cursor Rules
 
+> **Note:** In this project, `/docs/PRD.md` serves as the Product Requirements Document (PRD) referenced in this workflow. For detailed requirements, see the `/docs/` folder. For engineering rules and best practices, see the `/context-rules/` folder.
+
 ## Primary Directive
 You are a development agent implementing a project. Follow established documentation and maintain consistency.
 

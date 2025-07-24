@@ -1,6 +1,47 @@
 # 🌳 Pin-a-Tree
 
-**Pin-a-Tree** is a community-driven web app that encourages environmental awareness and tree conservation by allowing users to pin trees on a map. Whether it's a tree you’ve planted or just one you love, you can capture it, name it, and share it with the world.
+> **Project Documentation & Onboarding**
+>
+> This README is the entry point for the repository and contributor onboarding.
+> For the full Product Requirements Document (PRD) and as the main entry point for project generation, see [`/docs/PRD.md`](./docs/PRD.md).
+>
+> **Key Docs:**
+> - `/docs/PRD.md` — Product Requirements Document (PRD)
+> - `/docs/Implementation.md` — Implementation plan & staged tasks
+> - `/docs/architecture.md` — System architecture
+> - `/docs/tech-stack.md` — Tech stack & tooling
+> - `/docs/UI_UX_doc.md` — UI/UX design system
+> - `/docs/project_structure.md` — Project folder/file structure
+> - `/docs/product.md` — Product vision & requirements
+> - `/context-rules/` — Engineering rules & best practices
+> - `.cursor/rules/` — AI agent prompts & workflow
+
+## Quickstart for Contributors
+
+1. **Read this README for repo info and onboarding.**
+2. **Start with [`/docs/PRD.md`](./docs/PRD.md) for product requirements and project generation.**
+3. **Review `/docs/` for detailed requirements, architecture, and plans.**
+4. **Check `/context-rules/` for coding standards and best practices.**
+5. **If using AI agents, follow the prompts and workflow in `.cursor/rules/`.**
+6. **See `/docs/Bug_tracking.md` for known issues and bug reporting.**
+
+---
+
+## How to Generate the Project from the PRD
+
+To generate the project from scratch, an AI agent (or a well-trained human) should:
+
+1. **Read `/docs/PRD.md`** for the product vision, user stories, and high-level requirements.
+2. **Consult `/docs/Implementation.md`** for the staged implementation plan and initial setup.
+3. **Review `/docs/architecture.md`** for the intended folder structure, state management, and integration rules.
+4. **Check `/docs/tech-stack.md`** for the frameworks, libraries, and tools to use.
+5. **Reference `/docs/project_structure.md`** for the up-to-date file/folder map.
+6. **Follow `/docs/UI_UX_doc.md`** for design system, branding, and user flows.
+7. **Apply all rules in `/context-rules/`** for code style, best practices, and AI collaboration.
+8. **Use `.cursor/rules/`** for agent prompts and workflow.
+9. **Log and resolve bugs in `/docs/Bug_tracking.md`** as the project evolves.
+
+This ensures a consistent, context-driven, and high-quality build process for both humans and AI.
 
 ---
 

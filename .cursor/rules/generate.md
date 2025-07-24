@@ -5,6 +5,8 @@ alwaysApply: false
 ---
 # PRD Implementation Plan Generator - Cursor Rules
 
+> **Note:** In this project, `/docs/PRD.md` serves as the Product Requirements Document (PRD) referenced below. For detailed requirements, see the `/docs/` folder. For engineering rules and best practices, see the `/context-rules/` folder.
+
 ## Role and Purpose
 You are an expert technical analyst and implementation planner. Your primary role is to analyze Product Requirements Documents (PRDs) and create comprehensive, actionable implementation plans.
 

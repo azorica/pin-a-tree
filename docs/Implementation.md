@@ -1,5 +1,36 @@
 # Implementation Plan for Pin-a-Tree (MVP)
 
+## Initial Project Setup
+
+Before starting any development, ensure the following steps are completed:
+
+1. **Install dependencies:**
+   ```sh
+   npm install
+   # or
+   yarn install
+   ```
+2. **Start the development server:**
+   ```sh
+   npm run dev
+   # or
+   yarn dev
+   ```
+3. **Run linting and formatting:**
+   ```sh
+   npm run lint
+   npm run format
+   ```
+4. **(Optional) Start Storybook for component development:**
+   ```sh
+   npm run storybook
+   ```
+5. **(Optional) Copy `.env.example` to `.env` and fill in any required environment variables.**
+
+> All contributors must complete these steps before making any code changes.
+
+---
+
 ## Feature Analysis
 
 ### Identified Features
