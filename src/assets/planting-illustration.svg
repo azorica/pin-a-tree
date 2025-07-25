@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Person -->
+  <path d="M200 150 Q220 130 240 150 L240 250 L220 300 L180 300 L160 250 Z" fill="#388E3C"/>
+  <path d="M180 100 Q200 80 220 100 L220 150 L180 150 Z" fill="#A5D6A7"/>
+  <path d="M160 250 L140 350 L180 350 L180 300 Z" fill="#388E3C"/>
+  <path d="M220 300 L220 350 L260 350 L240 250 Z" fill="#388E3C"/>
+  
+  <!-- Plant -->
+  <path d="M180 200 Q160 180 140 200 L160 220 Z" fill="#A5D6A7"/>
+  <path d="M220 180 Q240 160 260 180 L240 200 Z" fill="#A5D6A7"/>
+  <path d="M200 160 Q220 140 240 160 L220 180 Z" fill="#A5D6A7"/>
+  <rect x="190" y="220" width="20" height="80" fill="#5D4037"/>
+  
+  <!-- Ground -->
+  <path d="M100 350 Q200 330 300 350 L300 400 L100 400 Z" fill="#5D4037"/>
+</svg> 

@@ -4,6 +4,11 @@ const routes = [
   {
     path: '/',
     name: 'home',
+    component: () => import('@/views/LandingView.vue')
+  },
+  {
+    path: '/map',
+    name: 'map',
     component: () => import('@/views/HomeView.vue')
   },
   {
