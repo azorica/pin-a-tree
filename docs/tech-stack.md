@@ -20,7 +20,7 @@ The application is built with a **strict separation between frontend and backend
 | UI Components  | **Custom-built**     | No UI libraries (like Vuetify or Tailwind). All components written from scratch |
 | Component Dev  | **Storybook (latest)** | Isolated development and documentation of base components like `Button.vue`, `Dialog.vue` |
 | Accessibility  | **WAI-ARIA Patterns** | Every UI component must follow official [WAI-ARIA APG patterns](https://www.w3.org/WAI/ARIA/apg/patterns/) |
-| Map Integration| **Google Maps JS API** | Used to pin geolocated trees on an interactive map |
+| Map Integration| **Leaflet + OpenStreetMap** | Free and open-source map solution with no API key required |
 | EXIF Data      | **exifr** or similar | To extract geolocation metadata from uploaded photos |
 | Testing        | **Vitest + Testing Library** | Unit and component-level tests |
 | Linting/Format | **ESLint + Prettier** | Code quality and formatting consistency |
@@ -36,7 +36,7 @@ The application is built with a **strict separation between frontend and backend
 | Database     | **Firestore (NoSQL)**    | PostgreSQL               |
 | File Storage | **Firebase Storage**     | AWS S3 or equivalent     |
 | API Layer    | **Cloud Functions / RPC**| REST or GraphQL          |
-| Geolocation  | **EXIF + Google Maps API** | GPS fallback optional    |
+| Geolocation  | **EXIF + OpenStreetMap** | GPS fallback optional    |
 
 > Backend is API-first. Frontend never directly accesses any backend SDK or service.
 

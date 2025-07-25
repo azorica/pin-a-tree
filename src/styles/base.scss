@@ -1,0 +1,115 @@
+@use 'colors' as *;
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Reset
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// Base font size (1rem = 10px)
+html {
+  font-size: $base-font-size;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  color: $dark-text;
+  background-color: $dark-background;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: $spacing-2;
+}
+
+h1 { font-size: $font-size-h1; }
+h2 { font-size: $font-size-h2; }
+h3 { font-size: $font-size-h3; }
+h4 { font-size: $font-size-h4; }
+
+// Links
+a {
+  color: $primary-green;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $secondary-green;
+  }
+
+  @include focus-visible;
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Buttons
+button {
+  @include button-base;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  @include focus-visible;
+}
+
+// Form elements
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  border: 1px solid $input-border;
+  border-radius: $border-radius-sm;
+  padding: $spacing-1 $spacing-2;
+  background-color: $white;
+
+  &:focus {
+    outline: none;
+    border-color: $input-focus;
+    box-shadow: 0 0 0 2px rgba($input-focus, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Lists
+ul, ol {
+  list-style-position: inside;
+  margin-bottom: $spacing-2;
+}
+
+// Container
+.container {
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 $spacing-2;
+
+  @include width-at-least('medium') {
+    padding: 0 $spacing-3;
+  }
+} 

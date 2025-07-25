@@ -19,7 +19,6 @@ Pin-a-Tree follows a modular, scalable architecture with a clean separation betw
 ├── styles/ # Global and component styles (SCSS)
 └── utils/ # Helper functions and utilities
 
-
 ---
 
 ## State Management
@@ -38,7 +37,7 @@ Pin-a-Tree follows a modular, scalable architecture with a clean separation betw
 - Frontend interacts exclusively via API clients in `/services`  
 - Services include: tree CRUD, user auth, image upload, geolocation  
 - Coordinates extracted from photo EXIF or user input  
-- Google Maps API used for map rendering and pinning
+- OpenStreetMap with Leaflet used for map rendering and pinning
 
 ---
 

@@ -1,0 +1,30 @@
+{
+  "trees": [
+    {
+      "id": "1",
+      "name": "Mighty Oak",
+      "species": "Quercus robur",
+      "dateAdded": "2024-03-25T10:00:00Z",
+      "location": {
+        "lat": 51.5074,
+        "lng": -0.1278,
+        "address": "Hyde Park, London"
+      },
+      "photo": "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=800",
+      "description": "A beautiful oak tree planted in Hyde Park"
+    },
+    {
+      "id": "2",
+      "name": "Japanese Maple",
+      "species": "Acer palmatum",
+      "dateAdded": "2024-03-24T15:30:00Z",
+      "location": {
+        "lat": 51.5075,
+        "lng": -0.1276,
+        "address": "Kensington Gardens, London"
+      },
+      "photo": "https://images.unsplash.com/photo-1588392382834-a891154bca4d?auto=format&fit=crop&w=800",
+      "description": "Vibrant red maple tree in full autumn colors"
+    }
+  ]
+} 

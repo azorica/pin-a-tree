@@ -13,10 +13,10 @@ The goal of Pin-a-Tree is to create a digital forest — a living, growing map t
 - **Provide Tree Info**  
   Add basic details (e.g. tree name, species, date planted — more TBA).
 - **Auto-detect Location**  
-  The app extracts the GPS coordinates from the photo’s metadata (EXIF). If missing, users can manually pin the location.
+  The app extracts the GPS coordinates from the photo's metadata (EXIF). If missing, users can manually pin the location.
 - **Pin to Map**  
-  The tree appears on a collaborative Google Map with your photo and data.
-- **View Others’ Trees**  
+  The tree appears on a collaborative OpenStreetMap with your photo and data.
+- **View Others' Trees**  
   Browse trees pinned by other users and explore a global map of green activity.
 
 ---
@@ -33,7 +33,7 @@ The goal of Pin-a-Tree is to create a digital forest — a living, growing map t
 ## 🧰 Tech Stack (Summary)
 
 - **Frontend**: Vue 3 + Vite + Composition API + Pinia
-- **Map**: Google Maps API
+- **Map**: Leaflet + OpenStreetMap (free, no API key required)
 - **Image Handling**: EXIF data extraction
 - **Backend**: To be determined (e.g. Firebase, Supabase, or Node backend)
 

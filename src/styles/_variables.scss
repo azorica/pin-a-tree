@@ -1,0 +1,33 @@
+// Base font size: 62.5% of 16px = 10px
+// This makes 1rem = 10px for easier calculations
+$base-font-size: 62.5%;
+
+// Spacing scale
+$spacing-1: 0.5rem;  // 5px
+$spacing-2: 1rem;    // 10px
+$spacing-3: 2rem;    // 20px
+$spacing-4: 4rem;    // 40px
+
+// Typography
+$font-family-base: 'Poppins', 'Inter', 'Montserrat', sans-serif;
+$font-size-base: 1.6rem;
+$font-size-h1: 3.2rem;
+$font-size-h2: 2.4rem;
+$font-size-h3: 2rem;
+$font-size-h4: 1.8rem;
+$font-size-button: 1.6rem;
+
+// Border radius
+$border-radius-sm: 0.4rem;
+$border-radius-md: 0.8rem;
+$border-radius-lg: 1.2rem;
+
+// Shadows
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-modal: 2000;
+$z-index-tooltip: 3000; 

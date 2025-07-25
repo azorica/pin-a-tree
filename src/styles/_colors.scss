@@ -1,0 +1,30 @@
+// Brand Colors from UI/UX doc
+$primary-green: #2E7D32;
+$secondary-green: #388E3C;
+$light-green: #A5D6A7;
+$off-white: #F5F5F5;
+$dark-background: #111111;
+$white: #FFFFFF;
+$dark-text: #222222;
+
+// Semantic Colors
+$success: $primary-green;
+$error: #D32F2F;
+$warning: #FFA000;
+$info: #1976D2;
+
+// Component-specific Colors
+$button-primary-bg: $primary-green;
+$button-primary-text: $white;
+$button-secondary-bg: transparent;
+$button-secondary-text: $primary-green;
+$button-secondary-border: $primary-green;
+
+$card-bg: $off-white;
+$card-text: $dark-text;
+
+$input-border: $dark-text;
+$input-focus: $primary-green;
+
+$map-pin: $light-green;
+$map-bg: $off-white; 

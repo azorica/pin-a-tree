@@ -1,0 +1,50 @@
+{
+  "name": "pin-a-tree",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "leaflet": "latest",
+    "exifr": "latest",
+    "lucide-vue-next": "latest",
+    "pinia": "latest",
+    "vue": "latest",
+    "vue-router": "^4.0.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "latest",
+    "@storybook/addon-interactions": "latest",
+    "@storybook/addon-links": "latest",
+    "@storybook/blocks": "latest",
+    "@storybook/testing-library": "latest",
+    "@storybook/vue3": "latest",
+    "@storybook/vue3-vite": "latest",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/vue": "latest",
+    "@vitejs/plugin-vue": "latest",
+    "@vue/test-utils": "^2.0.0",
+    "eslint": "^8.0.0",
+    "eslint-plugin-storybook": "latest",
+    "eslint-plugin-vue": "^9.0.0",
+    "jsdom": "latest",
+    "prettier": "^3.0.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "sass": "latest",
+    "storybook": "latest",
+    "vite": "latest",
+    "vitest": "latest"
+  }
+}
