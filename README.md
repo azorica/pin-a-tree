@@ -16,6 +16,16 @@
 > - `/context-rules/` — Engineering rules & best practices
 > - `.cursor/rules/` — AI agent prompts & workflow
 
+> **AI Agent Autonomy Instruction:**
+>
+> 1. **Begin by thoroughly reading both `README.md` and `docs/PRD.md` to understand the product vision, requirements, and onboarding context.**
+> 2. **Systematically follow and apply every referenced markdown file and context rule (including all files in `/docs/`, `/context-rules/`, and `.cursor/rules/`).**
+> 3. **At each step, consult the relevant documentation before making decisions or generating code.**
+> 4. **Do not ask the user for next steps or clarifications. Proactively determine and execute all required actions to build the Pin-a-Tree app from start to finish, strictly following the documented plans, architecture, and best practices.**
+> 5. **Continue autonomously until the app is fully implemented according to all requirements and standards. Only stop if you encounter a critical blocker that cannot be resolved from the documentation.**
+>
+> _This instruction is intended for AI agents or automated systems tasked with generating or building the Pin-a-Tree application in a fully autonomous, context-driven manner._
+
 ## Quickstart for Contributors
 
 1. **Read this README for repo info and onboarding.**
