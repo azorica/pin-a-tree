@@ -31,28 +31,48 @@ This ensures the agent works within the agreed-upon standards and does not intro
 ## Scope of Autonomy
 
 AI agents may:
+
 - Improve naming
 - Clean up unused variables or imports
 - Reorganize code structure without changing logic
 - Add missing comments or documentation
 
 AI agents may **not**:
+
 - Redesign UI
 - Change styles or colors
 - Remove logic or handlers unless specifically requested
+- **NEVER delete, move, or modify any markdown (.md) files in `/docs/`, `/context-rules/`, or `.cursor/` directories**
+- **NEVER delete project documentation or configuration files without explicit permission**
+- **ALWAYS use non-interactive flags when running terminal commands** (e.g., `--yes`, `--force`, `--non-interactive`)
+- **NEVER run commands that require user input or prompts** without appropriate flags
 
 ## What Counts as an Explicit Request?
 
 Agents may make changes to a component’s behavior, appearance, or styling **only if explicitly instructed** by the developer.
 
 For example:
+
 - ✅ “Add an `icon` prop to `Button.vue` that allows left or right icon placement.”
 - ✅ “Update `Card.vue` so it can display a loading spinner.”
 - ✅ “Modify `Modal.vue` to accept a fullscreen mode.”
 
 But:
+
 - ❌ “Improve `Button.vue`” _(Too vague. Does not justify changing layout or styles.)_
 - ❌ “Refactor `Form.vue`” _(Only allowed if behavior or styles remain unchanged.)_
 - ❌ “Optimize `Header.vue`” _(Requires clarification of intent before changing anything.)_
 
 Be clear and intentional in your prompts to avoid unintended modifications.
+
+## Terminal Command Guidelines
+
+When running terminal commands, AI agents must:
+
+- **Always use non-interactive flags**: `--yes`, `--force`, `--non-interactive`, etc.
+- **Examples of correct usage**:
+  - `npm install --yes`
+  - `npm create vue@latest . --typescript false --jsx false --router true --pinia true --vitest true --cypress false --eslint true --prettier true --force`
+  - `npx storybook@latest init --yes`
+- **Verify commands won't prompt for user input** before execution
+- **Never run commands in directories containing documentation** without proper backup/restore procedures
