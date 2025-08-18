@@ -1,0 +1,49 @@
+// =============================================================================
+// COLOR PALETTE - Pin-a-Tree
+// =============================================================================
+// Brand colors extracted from UI/UX documentation
+
+// Primary Colors
+$primary-green: #2e7d32;
+$secondary-green: #388e3c;
+$light-green: #a5d6a7;
+
+// Neutral Colors
+$off-white: #f5f5f5;
+$dark-background: #111111;
+$white: #ffffff;
+$dark-text: #222222;
+
+// State Colors (derived from primary)
+$success: $primary-green;
+$info: $secondary-green;
+$warning: #ff9800;
+$error: #f44336;
+
+// Gradients and Variations
+$primary-green-light: lighten($primary-green, 10%);
+$primary-green-dark: darken($primary-green, 10%);
+$secondary-green-light: lighten($secondary-green, 10%);
+$secondary-green-dark: darken($secondary-green, 10%);
+
+// Text Colors
+$text-primary: $white;
+$text-secondary: $dark-text;
+$text-muted: lighten($dark-text, 30%);
+$text-inverse: $white;
+
+// Background Colors
+$bg-primary: $dark-background;
+$bg-secondary: $off-white;
+$bg-card: $off-white;
+$bg-overlay: rgba($dark-background, 0.8);
+
+// Border Colors
+$border-light: rgba($white, 0.2);
+$border-dark: rgba($dark-text, 0.2);
+$border-accent: $light-green;
+
+// Shadow Colors
+$shadow-light: rgba($dark-background, 0.1);
+$shadow-medium: rgba($dark-background, 0.2);
+$shadow-dark: rgba($dark-background, 0.3);

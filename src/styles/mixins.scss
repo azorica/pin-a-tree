@@ -1,0 +1,199 @@
+// =============================================================================
+// MIXINS - Pin-a-Tree
+// =============================================================================
+
+@use 'sass:map';
+@use 'variables' as variables;
+@use 'colors' as colors;
+
+// =============================================================================
+// RESPONSIVE BREAKPOINT MIXINS
+// =============================================================================
+
+@mixin width-at-least($breakpoint) {
+  $value: map.get(variables.$breakpoints, $breakpoint);
+  @if $value != null {
+    @media (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "No value for breakpoint `#{$breakpoint}` in $breakpoints map.";
+  }
+}
+
+@mixin width-less-than($breakpoint) {
+  $value: map.get(variables.$breakpoints, $breakpoint);
+  @if $value != null {
+    @media (max-width: ($value - 1)) {
+      @content;
+    }
+  } @else {
+    @warn "No value for breakpoint `#{$breakpoint}` in $breakpoints map.";
+  }
+}
+
+@mixin width-between($min, $max) {
+  $min-value: map.get(variables.$breakpoints, $min);
+  $max-value: map.get(variables.$breakpoints, $max);
+  @if $min-value and $max-value {
+    @media (min-width: $min-value) and (max-width: ($max-value - 1)) {
+      @content;
+    }
+  } @else {
+    @warn "Invalid breakpoint range: #{$min} to #{$max}.";
+  }
+}
+
+// =============================================================================
+// LAYOUT MIXINS
+// =============================================================================
+
+// Container with max-width and centered
+@mixin container {
+  max-width: variables.$container-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: variables.$spacing-2;
+  padding-right: variables.$spacing-2;
+
+  @include width-at-least('medium') {
+    padding-left: variables.$spacing-3;
+    padding-right: variables.$spacing-3;
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// =============================================================================
+// COMPONENT MIXINS
+// =============================================================================
+
+// Button base styles
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: variables.$spacing-1;
+  padding: variables.$spacing-1_5 variables.$spacing-3;
+  border: none;
+  border-radius: variables.$border-radius-large;
+  font-family: variables.$font-primary;
+  font-size: variables.$font-size-body;
+  font-weight: variables.$font-weight-semibold;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all variables.$transition-normal;
+  user-select: none;
+
+  &:focus {
+    outline: 2px solid colors.$primary-green;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Card base styles
+@mixin card-base {
+  background: colors.$bg-card;
+  border-radius: variables.$border-radius-large;
+  box-shadow: variables.$shadow-medium;
+  padding: variables.$spacing-2;
+  transition: box-shadow variables.$transition-normal;
+
+  &:hover {
+    box-shadow: variables.$shadow-large;
+  }
+}
+
+// Input base styles
+@mixin input-base {
+  width: 100%;
+  padding: variables.$spacing-1_5;
+  border: 2px solid colors.$border-light;
+  border-radius: variables.$border-radius-medium;
+  font-family: variables.$font-primary;
+  font-size: variables.$font-size-body;
+  background: colors.$white;
+  color: colors.$text-secondary;
+  transition: border-color variables.$transition-normal;
+
+  &:focus {
+    outline: none;
+    border-color: colors.$primary-green;
+    box-shadow: 0 0 0 3px rgba(colors.$primary-green, 0.1);
+  }
+
+  &::placeholder {
+    color: colors.$text-muted;
+  }
+}
+
+// =============================================================================
+// UTILITY MIXINS
+// =============================================================================
+
+// Truncate text with ellipsis
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Multi-line text truncation
+@mixin text-truncate-lines($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Visually hidden (for screen readers)
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Reset button styles
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+// Reset list styles
+@mixin list-reset {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

@@ -1,0 +1,149 @@
+{
+  "auth": {
+    "login": {
+      "success": {
+        "user": {
+          "id": "user-001",
+          "name": "Sarah Johnson",
+          "email": "sarah.johnson@example.com",
+          "token": "mock-jwt-token-12345"
+        },
+        "message": "Login successful"
+      },
+      "error": {
+        "error": "Invalid credentials",
+        "message": "The email or password you entered is incorrect"
+      }
+    },
+    "register": {
+      "success": {
+        "user": {
+          "id": "user-new",
+          "name": "New User",
+          "email": "newuser@example.com"
+        },
+        "message": "Registration successful"
+      },
+      "error": {
+        "error": "Registration failed",
+        "message": "Email already exists"
+      }
+    }
+  },
+  "trees": {
+    "getAll": {
+      "success": {
+        "trees": [],
+        "total": 5,
+        "page": 1,
+        "limit": 20
+      }
+    },
+    "getById": {
+      "success": {
+        "tree": {}
+      },
+      "error": {
+        "error": "Tree not found",
+        "message": "No tree found with the specified ID"
+      }
+    },
+    "create": {
+      "success": {
+        "tree": {
+          "id": "tree-new",
+          "name": "New Tree",
+          "species": "Unknown",
+          "datePlanted": "2024-02-10",
+          "dateAdded": "2024-02-10T12:00:00Z"
+        },
+        "message": "Tree added successfully"
+      },
+      "error": {
+        "error": "Validation failed",
+        "message": "Required fields are missing"
+      }
+    },
+    "update": {
+      "success": {
+        "tree": {},
+        "message": "Tree updated successfully"
+      },
+      "error": {
+        "error": "Update failed",
+        "message": "Tree not found or permission denied"
+      }
+    },
+    "delete": {
+      "success": {
+        "message": "Tree deleted successfully"
+      },
+      "error": {
+        "error": "Delete failed",
+        "message": "Tree not found or permission denied"
+      }
+    }
+  },
+  "upload": {
+    "image": {
+      "success": {
+        "url": "/uploads/trees/mock-image-12345.jpg",
+        "filename": "tree-photo.jpg",
+        "size": 1024000,
+        "type": "image/jpeg",
+        "exifData": {
+          "gps": {
+            "latitude": 40.7128,
+            "longitude": -74.006
+          },
+          "camera": {
+            "make": "Apple",
+            "model": "iPhone 13",
+            "datetime": "2024-02-10T14:30:00Z"
+          }
+        }
+      },
+      "error": {
+        "error": "Upload failed",
+        "message": "Invalid file type or size too large"
+      }
+    }
+  },
+  "search": {
+    "trees": {
+      "success": {
+        "results": [],
+        "total": 0,
+        "query": "",
+        "filters": {}
+      }
+    },
+    "users": {
+      "success": {
+        "results": [],
+        "total": 0,
+        "query": ""
+      }
+    }
+  },
+  "stats": {
+    "global": {
+      "success": {
+        "totalTrees": 1247,
+        "totalUsers": 342,
+        "treesThisMonth": 89,
+        "countriesActive": 23,
+        "speciesCount": 156
+      }
+    },
+    "user": {
+      "success": {
+        "treesPlanted": 0,
+        "treesAdopted": 0,
+        "communityEvents": 0,
+        "badges": [],
+        "ranking": null
+      }
+    }
+  }
+}

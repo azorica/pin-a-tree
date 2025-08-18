@@ -1,0 +1,142 @@
+[
+  {
+    "id": "tree-001",
+    "name": "Ancient Oak",
+    "species": "Quercus robur",
+    "datePlanted": "2023-03-15",
+    "dateAdded": "2024-01-15T10:30:00Z",
+    "location": {
+      "latitude": 40.7128,
+      "longitude": -74.006,
+      "address": "Central Park, New York, NY"
+    },
+    "image": {
+      "url": "/src/assets/imagery/illustrations/planting-a-tree.png",
+      "alt": "Ancient oak tree in Central Park",
+      "width": 800,
+      "height": 600
+    },
+    "description": "A majestic oak tree planted to commemorate Earth Day 2023. This tree was planted as part of the community reforestation initiative.",
+    "plantedBy": {
+      "userId": "user-001",
+      "name": "Sarah Johnson",
+      "initials": "SJ"
+    },
+    "tags": ["urban-forest", "community", "oak", "earth-day"],
+    "status": "healthy",
+    "height": "2.5m",
+    "circumference": "45cm"
+  },
+  {
+    "id": "tree-002",
+    "name": "Cherry Blossom Beauty",
+    "species": "Prunus serrulata",
+    "datePlanted": "2023-04-20",
+    "dateAdded": "2024-01-20T14:45:00Z",
+    "location": {
+      "latitude": 34.0522,
+      "longitude": -118.2437,
+      "address": "Griffith Observatory, Los Angeles, CA"
+    },
+    "image": {
+      "url": "/src/assets/imagery/illustrations/planting-a-tree.png",
+      "alt": "Beautiful cherry blossom tree",
+      "width": 800,
+      "height": 600
+    },
+    "description": "A stunning cherry blossom tree that brings beautiful pink flowers every spring. Planted during the Spring Festival celebration.",
+    "plantedBy": {
+      "userId": "user-002",
+      "name": "Michael Chen",
+      "initials": "MC"
+    },
+    "tags": ["cherry-blossom", "spring", "festival", "ornamental"],
+    "status": "healthy",
+    "height": "1.8m",
+    "circumference": "32cm"
+  },
+  {
+    "id": "tree-003",
+    "name": "Redwood Giant",
+    "species": "Sequoia sempervirens",
+    "datePlanted": "2023-06-10",
+    "dateAdded": "2024-01-25T09:15:00Z",
+    "location": {
+      "latitude": 37.7749,
+      "longitude": -122.4194,
+      "address": "Golden Gate Park, San Francisco, CA"
+    },
+    "image": {
+      "url": "/src/assets/imagery/illustrations/planting-a-tree.png",
+      "alt": "Young redwood tree in Golden Gate Park",
+      "width": 800,
+      "height": 600
+    },
+    "description": "A young redwood that will grow to be one of the tallest trees in the world. Planted as part of the California reforestation project.",
+    "plantedBy": {
+      "userId": "user-003",
+      "name": "Emily Rodriguez",
+      "initials": "ER"
+    },
+    "tags": ["redwood", "california", "conservation", "reforestation"],
+    "status": "healthy",
+    "height": "3.2m",
+    "circumference": "55cm"
+  },
+  {
+    "id": "tree-004",
+    "name": "Maple Majesty",
+    "species": "Acer saccharum",
+    "datePlanted": "2023-09-22",
+    "dateAdded": "2024-02-01T16:20:00Z",
+    "location": {
+      "latitude": 41.8781,
+      "longitude": -87.6298,
+      "address": "Millennium Park, Chicago, IL"
+    },
+    "image": {
+      "url": "/src/assets/imagery/illustrations/planting-a-tree.png",
+      "alt": "Sugar maple tree with autumn colors",
+      "width": 800,
+      "height": 600
+    },
+    "description": "A sugar maple known for its spectacular fall colors. This tree was planted during the Autumn Equinox celebration.",
+    "plantedBy": {
+      "userId": "user-004",
+      "name": "David Thompson",
+      "initials": "DT"
+    },
+    "tags": ["maple", "autumn", "sugar-maple", "seasonal"],
+    "status": "healthy",
+    "height": "2.1m",
+    "circumference": "38cm"
+  },
+  {
+    "id": "tree-005",
+    "name": "Pine Pioneer",
+    "species": "Pinus strobus",
+    "datePlanted": "2023-11-15",
+    "dateAdded": "2024-02-05T11:10:00Z",
+    "location": {
+      "latitude": 42.3601,
+      "longitude": -71.0589,
+      "address": "Boston Common, Boston, MA"
+    },
+    "image": {
+      "url": "/src/assets/imagery/illustrations/planting-a-tree.png",
+      "alt": "Eastern white pine tree",
+      "width": 800,
+      "height": 600
+    },
+    "description": "An Eastern white pine that represents resilience and longevity. Planted during the Winter Preparedness event.",
+    "plantedBy": {
+      "userId": "user-005",
+      "name": "Lisa Anderson",
+      "initials": "LA"
+    },
+    "tags": ["pine", "evergreen", "winter", "resilience"],
+    "status": "healthy",
+    "height": "1.9m",
+    "circumference": "29cm"
+  }
+]

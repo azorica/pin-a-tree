@@ -1,0 +1,127 @@
+[
+  {
+    "id": "user-001",
+    "name": "Sarah Johnson",
+    "email": "sarah.johnson@example.com",
+    "initials": "SJ",
+    "avatar": null,
+    "joinDate": "2023-01-10T08:00:00Z",
+    "location": {
+      "city": "New York",
+      "state": "NY",
+      "country": "USA"
+    },
+    "bio": "Environmental activist and tree enthusiast. Passionate about urban reforestation and community gardening.",
+    "stats": {
+      "treesPlanted": 15,
+      "treesAdopted": 3,
+      "communityEvents": 8
+    },
+    "preferences": {
+      "notifications": true,
+      "publicProfile": true,
+      "shareLocation": true
+    },
+    "badges": ["tree-planter", "community-leader", "eco-warrior"]
+  },
+  {
+    "id": "user-002",
+    "name": "Michael Chen",
+    "email": "michael.chen@example.com",
+    "initials": "MC",
+    "avatar": null,
+    "joinDate": "2023-02-15T12:30:00Z",
+    "location": {
+      "city": "Los Angeles",
+      "state": "CA",
+      "country": "USA"
+    },
+    "bio": "Nature photographer and conservation advocate. Love capturing the beauty of trees and sharing their stories.",
+    "stats": {
+      "treesPlanted": 8,
+      "treesAdopted": 12,
+      "communityEvents": 5
+    },
+    "preferences": {
+      "notifications": true,
+      "publicProfile": true,
+      "shareLocation": false
+    },
+    "badges": ["photographer", "conservationist", "nature-lover"]
+  },
+  {
+    "id": "user-003",
+    "name": "Emily Rodriguez",
+    "email": "emily.rodriguez@example.com",
+    "initials": "ER",
+    "avatar": null,
+    "joinDate": "2023-03-20T14:15:00Z",
+    "location": {
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "USA"
+    },
+    "bio": "Botanist and environmental educator. Dedicated to teaching others about the importance of trees in our ecosystem.",
+    "stats": {
+      "treesPlanted": 22,
+      "treesAdopted": 7,
+      "communityEvents": 12
+    },
+    "preferences": {
+      "notifications": true,
+      "publicProfile": true,
+      "shareLocation": true
+    },
+    "badges": ["educator", "botanist", "tree-expert", "community-champion"]
+  },
+  {
+    "id": "user-004",
+    "name": "David Thompson",
+    "email": "david.thompson@example.com",
+    "initials": "DT",
+    "avatar": null,
+    "joinDate": "2023-04-05T10:45:00Z",
+    "location": {
+      "city": "Chicago",
+      "state": "IL",
+      "country": "USA"
+    },
+    "bio": "Landscape architect with a focus on sustainable urban design and green infrastructure.",
+    "stats": {
+      "treesPlanted": 18,
+      "treesAdopted": 5,
+      "communityEvents": 9
+    },
+    "preferences": {
+      "notifications": false,
+      "publicProfile": true,
+      "shareLocation": true
+    },
+    "badges": ["architect", "urban-planner", "sustainability-expert"]
+  },
+  {
+    "id": "user-005",
+    "name": "Lisa Anderson",
+    "email": "lisa.anderson@example.com",
+    "initials": "LA",
+    "avatar": null,
+    "joinDate": "2023-05-12T16:20:00Z",
+    "location": {
+      "city": "Boston",
+      "state": "MA",
+      "country": "USA"
+    },
+    "bio": "Climate scientist and environmental policy researcher. Working to understand and combat climate change through tree conservation.",
+    "stats": {
+      "treesPlanted": 11,
+      "treesAdopted": 9,
+      "communityEvents": 6
+    },
+    "preferences": {
+      "notifications": true,
+      "publicProfile": false,
+      "shareLocation": false
+    },
+    "badges": ["scientist", "researcher", "climate-advocate"]
+  }
+]

@@ -1,0 +1,13 @@
+// =============================================================================
+// MAIN STYLES - Pin-a-Tree
+// =============================================================================
+// Central entry point for all global styles
+
+// Base styles (includes reset, typography, and foundational styles)
+@use 'base';
+
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+// Import Leaflet CSS for map functionality
+@import 'leaflet/dist/leaflet.css';
