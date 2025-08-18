@@ -1,5 +1,16 @@
 # UI/UX Documentation — Pin-a-Tree
 
+> **Asset References for AI Agents:**
+> - **Wireframes & Mockups:** `/docs/assets/wireframes/` - Visual layouts and user flow designs
+> - **Brand Assets:** `/docs/assets/branding/` - Logos, color swatches, typography samples
+> - **Design System:** `/docs/assets/design-system/` - Component examples and style guides
+> - **Reference Images:** `/docs/assets/references/` - Inspiration and style references
+>
+> **Important:** 
+> - When implementing the application, copy relevant assets from `/docs/assets/` to `/src/assets/` following the project structure guidelines
+> - **If asset folders are empty or files don't exist, proceed with implementation using the documented specifications** (colors, typography, etc.) and placeholder content
+> - Do not fail the build process due to missing asset files - use fallbacks and continue development
+
 ## 1. Design System Overview
 - The design is clean, modern, and nature-inspired, with a focus on accessibility and clarity.
 - The interface uses a dark background with green accents to evoke an eco-friendly, community-driven feel.
@@ -11,6 +22,13 @@
 ### Logo
 - The logo is a green map pin with a leaf motif, symbolizing tree planting and location.
 - Use the logo on the top left of the navigation bar and in marketing materials.
+- **Asset Location:** `/docs/assets/branding/logo/` - Contains logo variations (SVG, PNG, different sizes)
+- **Required Variants:** 
+  - `logo.svg` - Main logo (full color)
+  - `logo-white.svg` - White variant for dark backgrounds
+  - `logo-icon.svg` - Icon-only version
+  - `favicon.ico` - Browser favicon
+- **Fallback:** If logo files don't exist, use a placeholder or create a simple text-based logo using the brand colors and typography specifications
 
 ### Brand Colors
 Extracted from the landing page design:
@@ -81,6 +99,16 @@ Extracted from the landing page design:
 - Use illustrations and icons that are friendly, simple, and nature-themed.
 - Images should have rounded corners and subtle shadows.
 - Logo and map pin icons should be consistent in style and color.
+
+**Asset Locations:**
+- **Custom Illustrations:** `/docs/assets/imagery/illustrations/` - Nature-themed custom graphics
+- **Map Pin Designs:** `/docs/assets/imagery/map-pins/` - Various map pin styles and states
+- **Background Images:** `/docs/assets/imagery/backgrounds/` - Hero sections and pattern backgrounds
+- **UI Elements:** `/docs/assets/imagery/ui-elements/` - Custom buttons, cards, and component examples
+
+**Fallback Strategy:** If imagery folders are empty, use CSS-based designs, gradients, or placeholder images with the specified brand colors. Prioritize functionality over missing visuals.
+
+**Icons:**
 - **All icons in the app should use the [Lucide icon library for Vue 3](https://lucide.dev/guide/packages/lucide-vue-next).**
   - Install with: `npm install lucide-vue-next`
   - Import icons as Vue components:
@@ -112,14 +140,25 @@ Extracted from the landing page design:
 ---
 
 ## 10. User Flows
+**Wireframe Location:** `/docs/assets/wireframes/` - Contains detailed wireframes for all user flows
+
 - **Landing Page:**
   - Logo and navigation at top.
   - Main call-to-action: "Get Started" button.
   - Three feature cards: Create Account, Add a Tree, View the Map.
   - Map section with interactive pins.
   - Footer with additional info/links.
+  - **Wireframe:** `/docs/assets/wireframes/landing-page.png`
+
 - **Key Flows:**
   - Signup → Add Tree → View Map
+  - **Flow Wireframes:**
+    - `/docs/assets/wireframes/user-signup-flow.png`
+    - `/docs/assets/wireframes/add-tree-flow.png`
+    - `/docs/assets/wireframes/map-view.png`
+    - `/docs/assets/wireframes/user-profile.png`
+
+**Missing Wireframes:** If wireframe files don't exist, follow the text descriptions above and use standard UI patterns (navigation header, card layouts, responsive grids) based on the design system specifications.
 
 ---
 

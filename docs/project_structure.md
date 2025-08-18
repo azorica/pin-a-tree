@@ -20,6 +20,12 @@ pin-a-tree/
 │       ├── style-guide.md
 │       └── vue.md
 ├── docs/                   # Living documentation (plans, architecture, UI/UX, etc.)
+│   ├── assets/             # Design assets, wireframes, branding materials
+│   │   ├── wireframes/     # UI wireframes and user flow designs
+│   │   ├── branding/       # Brand assets (logos, colors, typography)
+│   │   ├── imagery/        # Visual assets and custom graphics
+│   │   ├── design-system/  # Design system documentation
+│   │   └── references/     # Inspiration and style references
 │   ├── architecture.md
 │   ├── Bug_tracking.md
 │   ├── Implementation.md
@@ -58,6 +64,9 @@ pin-a-tree/
 
 - **docs/**:  
   Living documentation for architecture, product, implementation plan, UI/UX, bug tracking, and context engineering prompts.
+
+- **docs/assets/**:  
+  Design assets, wireframes, and branding materials that serve as references for AI agents and developers when building the application. Assets are organized into wireframes, branding (logos, colors, typography), imagery, design system documentation, and references.
 
 - **src/assets/**:  
   Static resources (images, icons, fonts).
