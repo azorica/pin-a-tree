@@ -19,6 +19,7 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useTreeStore } from '@/stores/treeStore'
 import { useUserStore } from '@/stores/userStore'
+import * as imageService from '@/services/imageService'
 import { Camera, MapPin, TreePine, Upload, AlertCircle } from 'lucide-vue-next'
 
 import BaseButton from '@/components/BaseButton.vue'
@@ -159,8 +160,23 @@ const handleSubmit = async () => {
   isSubmitting.value = true
 
   try {
-    // TODO: Upload photo using imageService
-    // For now, we'll create the tree without actual photo upload
+    let photoUrl = null
+
+    // Upload photo if one was selected
+    if (formData.value.photo) {
+      try {
+        const uploadResult = await imageService.uploadImage(formData.value.photo, {
+          token: userStore.token,
+          onProgress: (progress) => {
+            uploadProgress.value = progress
+          },
+        })
+        photoUrl = uploadResult.url
+      } catch (uploadError) {
+        console.warn('Photo upload failed, proceeding without photo:', uploadError)
+        // Continue with tree creation even if photo upload fails
+      }
+    }
 
     const treeData = {
       name: formData.value.name.trim(),
@@ -174,8 +190,8 @@ const handleSubmit = async () => {
           formData.value.location.address ||
           `${formData.value.location.latitude.toFixed(4)}, ${formData.value.location.longitude.toFixed(4)}`,
       },
-      // Placeholder for photo URL - will be replaced with actual upload
-      photos: formData.value.photo ? ['/src/assets/imagery/illustrations/planting-a-tree.png'] : [],
+      // Use actual uploaded photo URL or empty array if no photo
+      photos: photoUrl ? [photoUrl] : [],
     }
 
     await treeStore.createTree(treeData)

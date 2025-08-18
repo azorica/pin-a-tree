@@ -123,5 +123,30 @@
       "shareLocation": false
     },
     "badges": ["scientist", "researcher", "climate-advocate"]
+  },
+  {
+    "id": "user-006",
+    "name": "Alice Demo",
+    "email": "alice@example.com",
+    "initials": "AD",
+    "avatar": null,
+    "joinDate": "2024-01-01T09:00:00Z",
+    "location": {
+      "city": "Demo City",
+      "state": "DC",
+      "country": "USA"
+    },
+    "bio": "Demo user account for testing and demonstration purposes.",
+    "stats": {
+      "treesPlanted": 5,
+      "treesAdopted": 2,
+      "communityEvents": 3
+    },
+    "preferences": {
+      "notifications": true,
+      "publicProfile": true,
+      "shareLocation": true
+    },
+    "badges": ["demo-user", "tree-planter"]
   }
 ]

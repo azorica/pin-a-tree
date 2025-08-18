@@ -3,6 +3,8 @@
 // =============================================================================
 // Brand colors extracted from UI/UX documentation
 
+@use 'sass:color';
+
 // Primary Colors
 $primary-green: #2e7d32;
 $secondary-green: #388e3c;
@@ -21,15 +23,15 @@ $warning: #ff9800;
 $error: #f44336;
 
 // Gradients and Variations
-$primary-green-light: lighten($primary-green, 10%);
-$primary-green-dark: darken($primary-green, 10%);
-$secondary-green-light: lighten($secondary-green, 10%);
-$secondary-green-dark: darken($secondary-green, 10%);
+$primary-green-light: color.scale($primary-green, $lightness: 10%);
+$primary-green-dark: color.scale($primary-green, $lightness: -10%);
+$secondary-green-light: color.scale($secondary-green, $lightness: 10%);
+$secondary-green-dark: color.scale($secondary-green, $lightness: -10%);
 
 // Text Colors
 $text-primary: $white;
 $text-secondary: $dark-text;
-$text-muted: lighten($dark-text, 30%);
+$text-muted: color.scale($dark-text, $lightness: 30%);
 $text-inverse: $white;
 
 // Background Colors

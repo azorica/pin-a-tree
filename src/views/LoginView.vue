@@ -104,7 +104,7 @@ const goToRegister = () => {
 
 onMounted(() => {
   // Clear any existing errors when component mounts
-  userStore.clearAuthError()
+  userStore.clearErrors()
 })
 </script>
 

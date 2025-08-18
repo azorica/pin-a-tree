@@ -332,34 +332,32 @@ defineExpose({
 // GLOBAL STYLES FOR LEAFLET COMPONENTS
 // ============================================================================
 
-:global(.tree-marker) {
-  &__pin {
-    @include mixins.flex-center;
-    width: 3.2rem;
-    height: 3.2rem;
-    background: colors.$primary-green;
-    color: colors.$white;
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    box-shadow: variables.$shadow-medium;
-    transition: all variables.$transition-normal;
-    cursor: pointer;
+:global(.tree-marker__pin) {
+  @include mixins.flex-center;
+  width: 3.2rem;
+  height: 3.2rem;
+  background: colors.$primary-green;
+  color: colors.$white;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: variables.$shadow-medium;
+  transition: all variables.$transition-normal;
+  cursor: pointer;
 
-    svg {
-      transform: rotate(45deg);
-    }
-
-    &:hover {
-      background: colors.$secondary-green;
-      transform: rotate(-45deg) scale(1.1);
-    }
-
-    &--selected {
-      background: colors.$secondary-green;
-      transform: rotate(-45deg) scale(1.2);
-      z-index: 1000;
-    }
+  svg {
+    transform: rotate(45deg);
   }
+
+  &:hover {
+    background: colors.$secondary-green;
+    transform: rotate(-45deg) scale(1.1);
+  }
+}
+
+:global(.tree-marker__pin--selected) {
+  background: colors.$secondary-green;
+  transform: rotate(-45deg) scale(1.2);
+  z-index: 1000;
 }
 
 :global(.tree-popup-container) {
@@ -397,66 +395,66 @@ defineExpose({
 :global(.tree-popup) {
   padding: variables.$spacing-3;
   min-width: 20rem;
+}
 
-  &__header {
-    margin-bottom: variables.$spacing-2;
-  }
+:global(.tree-popup__header) {
+  margin-bottom: variables.$spacing-2;
+}
 
-  &__title {
-    margin: 0 0 variables.$spacing-0_5;
-    font-size: variables.$font-size-large;
-    font-weight: variables.$font-weight-semibold;
-    color: colors.$text-secondary;
-  }
+:global(.tree-popup__title) {
+  margin: 0 0 variables.$spacing-0_5;
+  font-size: variables.$font-size-large;
+  font-weight: variables.$font-weight-semibold;
+  color: colors.$text-secondary;
+}
 
-  &__species {
+:global(.tree-popup__species) {
+  margin: 0;
+  font-size: variables.$font-size-small;
+  color: colors.$text-muted;
+  font-style: italic;
+}
+
+:global(.tree-popup__description) {
+  margin: 0 0 variables.$spacing-2;
+  font-size: variables.$font-size-small;
+  color: colors.$text-muted;
+  line-height: variables.$line-height-relaxed;
+}
+
+:global(.tree-popup__meta) {
+  margin-bottom: variables.$spacing-2;
+
+  p {
     margin: 0;
     font-size: variables.$font-size-small;
     color: colors.$text-muted;
-    font-style: italic;
+  }
+}
+
+:global(.tree-popup__actions) {
+  display: flex;
+  justify-content: flex-end;
+}
+
+:global(.tree-popup__button) {
+  padding: variables.$spacing-1 variables.$spacing-2;
+  background: colors.$primary-green;
+  color: colors.$white;
+  border: none;
+  border-radius: variables.$border-radius-medium;
+  font-size: variables.$font-size-small;
+  font-weight: variables.$font-weight-medium;
+  cursor: pointer;
+  transition: background-color variables.$transition-normal;
+
+  &:hover {
+    background: colors.$secondary-green;
   }
 
-  &__description {
-    margin: 0 0 variables.$spacing-2;
-    font-size: variables.$font-size-small;
-    color: colors.$text-muted;
-    line-height: variables.$line-height-relaxed;
-  }
-
-  &__meta {
-    margin-bottom: variables.$spacing-2;
-
-    p {
-      margin: 0;
-      font-size: variables.$font-size-small;
-      color: colors.$text-muted;
-    }
-  }
-
-  &__actions {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  &__button {
-    padding: variables.$spacing-1 variables.$spacing-2;
-    background: colors.$primary-green;
-    color: colors.$white;
-    border: none;
-    border-radius: variables.$border-radius-medium;
-    font-size: variables.$font-size-small;
-    font-weight: variables.$font-weight-medium;
-    cursor: pointer;
-    transition: background-color variables.$transition-normal;
-
-    &:hover {
-      background: colors.$secondary-green;
-    }
-
-    &:focus {
-      outline: 2px solid colors.$primary-green;
-      outline-offset: 2px;
-    }
+  &:focus {
+    outline: 2px solid colors.$primary-green;
+    outline-offset: 2px;
   }
 }
 
@@ -516,21 +514,19 @@ defineExpose({
   :global(.tree-popup) {
     min-width: 15rem;
     padding: variables.$spacing-2;
-
-    &__title {
-      font-size: variables.$font-size-body;
-    }
   }
 
-  :global(.tree-marker) {
-    &__pin {
-      width: 2.8rem;
-      height: 2.8rem;
+  :global(.tree-popup__title) {
+    font-size: variables.$font-size-body;
+  }
 
-      svg {
-        width: 1.6rem;
-        height: 1.6rem;
-      }
+  :global(.tree-marker__pin) {
+    width: 2.8rem;
+    height: 2.8rem;
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
     }
   }
 }
@@ -540,24 +536,20 @@ defineExpose({
 // ============================================================================
 
 @media (prefers-reduced-motion: reduce) {
-  :global(.tree-marker) {
-    &__pin {
-      transition: none;
+  :global(.tree-marker__pin) {
+    transition: none;
 
-      &:hover {
-        transform: rotate(-45deg);
-      }
-
-      &--selected {
-        transform: rotate(-45deg);
-      }
+    &:hover {
+      transform: rotate(-45deg);
     }
   }
 
-  :global(.tree-popup) {
-    &__button {
-      transition: none;
-    }
+  :global(.tree-marker__pin--selected) {
+    transform: rotate(-45deg);
+  }
+
+  :global(.tree-popup__button) {
+    transition: none;
   }
 }
 
@@ -567,10 +559,8 @@ defineExpose({
     border: 3px solid colors.$border-dark;
   }
 
-  :global(.tree-marker) {
-    &__pin {
-      border: 2px solid colors.$white;
-    }
+  :global(.tree-marker__pin) {
+    border: 2px solid colors.$white;
   }
 
   :global(.tree-popup-container) {

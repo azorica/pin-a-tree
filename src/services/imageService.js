@@ -170,6 +170,21 @@ export async function extractExifData(file) {
   }
 }
 
+/**
+ * Extract GPS coordinates from image EXIF data
+ * @param {File} file - Image file to process
+ * @returns {Promise<Object|null>} GPS data object or null if not found
+ */
+export async function extractGpsFromImage(file) {
+  try {
+    const exifData = await extractExifData(file)
+    return exifData.gps || null
+  } catch (error) {
+    console.error('GPS extraction error:', error)
+    return null
+  }
+}
+
 // =============================================================================
 // IMAGE PROCESSING
 // =============================================================================

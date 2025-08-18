@@ -338,7 +338,7 @@ const goToMap = () => {
     line-height: variables.$line-height-relaxed;
 
     @include mixins.width-at-least('medium') {
-      font-size: variables.$font-size-xl;
+      font-size: variables.$font-size-h6;
     }
   }
 

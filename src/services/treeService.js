@@ -23,6 +23,9 @@ import mockApiResponses from '@/mocks/api-responses.json'
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.pin-a-tree.com'
 const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA !== 'false' // Default to true
 
+// Runtime collection to store newly created trees in mock mode
+let runtimeTrees = []
+
 // =============================================================================
 // TREE CRUD OPERATIONS
 // =============================================================================
@@ -42,7 +45,8 @@ export async function fetchTrees(options = {}) {
     // Simulate async operation
     await new Promise((resolve) => setTimeout(resolve, 300))
 
-    let filteredTrees = [...mockTrees]
+    // Combine mock trees with runtime created trees
+    let filteredTrees = [...mockTrees, ...runtimeTrees]
 
     // Apply search filter
     if (options.search) {
@@ -110,7 +114,9 @@ export async function fetchTreeById(treeId) {
   if (USE_MOCK_DATA) {
     await new Promise((resolve) => setTimeout(resolve, 200))
 
-    const tree = mockTrees.find((t) => t.id === treeId)
+    // Search in both mock trees and runtime created trees
+    const allTrees = [...mockTrees, ...runtimeTrees]
+    const tree = allTrees.find((t) => t.id === treeId)
     if (!tree) {
       throw new Error('Tree not found')
     }
@@ -156,8 +162,9 @@ export async function createTree(treeData) {
       tags: [],
     }
 
-    // In a real app, this would be stored on the server
-    // For mock purposes, we'll just return the created tree
+    // Add to runtime trees collection so it can be retrieved later
+    runtimeTrees.push(newTree)
+
     return newTree
   }
 
@@ -182,7 +189,9 @@ export async function updateTree(treeId, updateData) {
   if (USE_MOCK_DATA) {
     await new Promise((resolve) => setTimeout(resolve, 400))
 
-    const existingTree = mockTrees.find((t) => t.id === treeId)
+    // Search in both mock trees and runtime created trees
+    const allTrees = [...mockTrees, ...runtimeTrees]
+    const existingTree = allTrees.find((t) => t.id === treeId)
     if (!existingTree) {
       throw new Error('Tree not found')
     }
@@ -191,6 +200,12 @@ export async function updateTree(treeId, updateData) {
       ...existingTree,
       ...updateData,
       dateModified: new Date().toISOString(),
+    }
+
+    // Update in runtime collection if it exists there
+    const runtimeIndex = runtimeTrees.findIndex((t) => t.id === treeId)
+    if (runtimeIndex !== -1) {
+      runtimeTrees[runtimeIndex] = updatedTree
     }
 
     return updatedTree
@@ -219,9 +234,17 @@ export async function deleteTree(treeId) {
   if (USE_MOCK_DATA) {
     await new Promise((resolve) => setTimeout(resolve, 300))
 
-    const treeExists = mockTrees.some((t) => t.id === treeId)
+    // Check if tree exists in either collection
+    const allTrees = [...mockTrees, ...runtimeTrees]
+    const treeExists = allTrees.some((t) => t.id === treeId)
     if (!treeExists) {
       throw new Error('Tree not found')
+    }
+
+    // Remove from runtime collection if it exists there
+    const runtimeIndex = runtimeTrees.findIndex((t) => t.id === treeId)
+    if (runtimeIndex !== -1) {
+      runtimeTrees.splice(runtimeIndex, 1)
     }
 
     return true
