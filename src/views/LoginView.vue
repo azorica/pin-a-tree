@@ -123,7 +123,7 @@ onMounted(() => {
           <form @submit.prevent="handleSubmit" class="login-view__form">
             <!-- Email field -->
             <div class="login-view__field">
-              <label for="email" class="login-view__label"> Email Address </label>
+              <label for="email" class="login-view__label">Email Address</label>
               <input
                 id="email"
                 v-model="formData.email"
@@ -142,7 +142,7 @@ onMounted(() => {
 
             <!-- Password field -->
             <div class="login-view__field">
-              <label for="password" class="login-view__label"> Password </label>
+              <label for="password" class="login-view__label">Password</label>
               <div class="login-view__password-field">
                 <input
                   id="password"
@@ -155,6 +155,7 @@ onMounted(() => {
                   :disabled="isSubmitting"
                 />
                 <button
+                  id="password-toggle"
                   type="button"
                   class="login-view__password-toggle"
                   @click="togglePasswordVisibility"
