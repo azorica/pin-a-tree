@@ -179,6 +179,7 @@ onMounted(() => {
 
             <!-- Submit button -->
             <BaseButton
+              id="sign-in-button"
               type="submit"
               variant="primary"
               size="large"
@@ -204,7 +205,9 @@ onMounted(() => {
         <!-- Register link -->
         <div class="login-view__register-section">
           <p class="login-view__register-text">Don't have an account yet?</p>
-          <BaseButton variant="secondary" @click="goToRegister"> Create Account </BaseButton>
+          <BaseButton id="create-account-button" variant="secondary" @click="goToRegister">
+            Create Account
+          </BaseButton>
         </div>
       </div>
     </div>
