@@ -1,0 +1,57 @@
+[
+  {
+    "id": "user-001",
+    "name": "Sarah Johnson",
+    "email": "sarah.johnson@email.com",
+    "avatar": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+    "bio": "Environmental educator and tree planting enthusiast. Believes in the power of community action.",
+    "location": "New York, NY",
+    "joinDate": "2023-01-15",
+    "treesPlanted": 5,
+    "badges": ["early-adopter", "educator", "community-leader"]
+  },
+  {
+    "id": "user-002",
+    "name": "Michael Chen",
+    "email": "michael.chen@email.com",
+    "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    "bio": "Software developer who codes by day and plants trees by weekend. Nature lover and photographer.",
+    "location": "San Francisco, CA",
+    "joinDate": "2023-02-20",
+    "treesPlanted": 3,
+    "badges": ["photographer", "tech-for-good"]
+  },
+  {
+    "id": "user-003",
+    "name": "Emma Rodriguez",
+    "email": "emma.rodriguez@email.com",
+    "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    "bio": "Community organizer focused on urban reforestation and climate action.",
+    "location": "Minneapolis, MN",
+    "joinDate": "2022-10-05",
+    "treesPlanted": 12,
+    "badges": ["veteran-planter", "organizer", "climate-champion"]
+  },
+  {
+    "id": "user-004",
+    "name": "David Thompson",
+    "email": "david.thompson@email.com",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    "bio": "Retired botanist sharing knowledge about native species and sustainable gardening.",
+    "location": "Boston, MA",
+    "joinDate": "2023-04-10",
+    "treesPlanted": 8,
+    "badges": ["botanist", "educator", "native-species-expert"]
+  },
+  {
+    "id": "user-005",
+    "name": "Luna Martinez",
+    "email": "luna.martinez@email.com",
+    "avatar": "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face",
+    "bio": "Landscape designer passionate about creating green spaces that bring communities together.",
+    "location": "Miami, FL",
+    "joinDate": "2023-05-22",
+    "treesPlanted": 6,
+    "badges": ["designer", "community-builder"]
+  }
+]
