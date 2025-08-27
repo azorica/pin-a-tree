@@ -69,20 +69,20 @@ const truncateText = (text, length) => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/variables';
+@use '@/styles/variables' as *;
 
 .tree-card {
-  background: var(--surface);
-  border-radius: var(--border-radius-lg);
-  border: 1px solid var(--border-light);
+  background: $background-color;
+  border-radius: $border-radius-large;
+  border: 1px solid #E0E0E0;
   overflow: hidden;
   transition: all 0.3s ease;
   cursor: pointer;
   
   &:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--primary-light);
+    box-shadow: $shadow-large;
+    border-color: $primary-light;
   }
 }
 
@@ -105,34 +105,34 @@ const truncateText = (text, length) => {
 
 .tree-card__date {
   position: absolute;
-  bottom: var(--spacing-sm);
-  left: var(--spacing-sm);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  bottom: $spacing-sm;
+  left: $spacing-sm;
+  padding: $spacing-xs $spacing-sm;
   background: rgba(0, 0, 0, 0.7);
   color: white;
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-xs);
+  border-radius: $border-radius;
+  font-size: $font-size-small;
 }
 
 .tree-card__content {
-  padding: var(--spacing-md);
+  padding: $spacing-md;
 }
 
 .tree-card__header {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: $spacing-sm;
 }
 
 .tree-card__title {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
-  margin: 0 0 var(--spacing-xs) 0;
+  font-size: $font-size-large;
+  font-weight: $font-weight-bold;
+  color: $text-dark;
+  margin: 0 0 $spacing-xs 0;
   line-height: 1.3;
 }
 
 .tree-card__subtitle {
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
+  font-size: $font-size-small;
+  color: $text-muted;
   margin: 0;
 }
 
@@ -140,13 +140,13 @@ const truncateText = (text, length) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: $spacing-sm;
 }
 
 .tree-card__planter {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: $spacing-xs;
 }
 
 .tree-card__planter-avatar {
@@ -154,36 +154,36 @@ const truncateText = (text, length) => {
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--border-light);
+  border: 2px solid #E0E0E0;
 }
 
 .tree-card__planter-name {
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-  font-weight: var(--font-weight-medium);
+  font-size: $font-size-small;
+  color: $text-muted;
+  font-weight: $font-weight-medium;
 }
 
 .tree-card__description {
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
+  font-size: $font-size-small;
+  color: $text-muted;
   line-height: 1.5;
   margin: 0;
 }
 
 // Responsive design
-@media (max-width: 768px) {
+@include width-less-than('medium') {
   .tree-card__image-container {
     height: 200px;
   }
   
   .tree-card__content {
-    padding: var(--spacing-sm);
+    padding: $spacing-sm;
   }
   
   .tree-card__meta {
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--spacing-xs);
+    gap: $spacing-xs;
   }
 }
 </style>

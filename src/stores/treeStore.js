@@ -85,8 +85,11 @@ export const useTreeStore = defineStore('tree', {
       this.error = null
       
       try {
+        console.log('🔄 Fetching trees from service...')
         const trees = await treeService.getAllTrees()
+        console.log(`📦 Service returned ${trees.length} trees`)
         this.trees = trees
+        console.log(`✅ Store now has ${this.trees.length} trees`)
       } catch (error) {
         this.error = 'Failed to fetch trees: ' + error.message
         console.error('Error fetching trees:', error)

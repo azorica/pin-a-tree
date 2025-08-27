@@ -132,11 +132,11 @@ const handleKeydown = (event) => {
   // ============================================================================
 
   &--primary {
-    background-color: var(--color-primary-green);
-    color: var(--color-text-primary);
+    background-color: $primary-green;
+    color: $text-primary;
     
     &:hover:not(:disabled) {
-      background-color: var(--color-secondary-green);
+      background-color: $secondary-green;
       transform: translateY(-1px);
     }
     
@@ -148,22 +148,22 @@ const handleKeydown = (event) => {
 
   &--secondary {
     background-color: transparent;
-    color: var(--color-primary-green);
-    border: 2px solid var(--color-primary-green);
+    color: $primary-green;
+    border: 2px solid $primary-green;
     
     &:hover:not(:disabled) {
-      background-color: var(--color-primary-green);
-      color: var(--color-text-primary);
+      background-color: $primary-green;
+      color: $text-primary;
     }
     
     &:active:not(:disabled) {
-      background-color: var(--color-secondary-green);
+      background-color: $secondary-green;
     }
   }
 
   &--ghost {
     background-color: transparent;
-    color: var(--color-text-primary);
+    color: $text-primary;
     border: none;
     
     &:hover:not(:disabled) {
@@ -186,12 +186,12 @@ const handleKeydown = (event) => {
 
   &--medium {
     padding: 1.2rem 2.4rem;
-    font-size: var(--font-size-button);
+    font-size: $font-size-button;
   }
 
   &--large {
     padding: 1.6rem 3.2rem;
-    font-size: var(--font-size-large);
+    font-size: $font-size-large;
   }
 
   // ============================================================================
@@ -230,7 +230,7 @@ const handleKeydown = (event) => {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    transition: opacity var(--transition-normal);
+    transition: opacity $transition-normal;
 
     &--hidden {
       opacity: 0;

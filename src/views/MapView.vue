@@ -1,197 +1,3 @@
-<script setup>
-/**
- * MapView Component
- *
- * Interactive map view showing all pinned trees in the Pin-a-Tree application.
- * Uses Leaflet for map rendering and displays tree locations with custom markers.
- *
- * Features:
- * - Interactive map with tree markers
- * - Tree details popup on marker click
- * - Map filtering and search
- * - Current user location (optional)
- * - Tree clustering for performance
- * - Responsive map controls
- */
-
-// Vue imports
-import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
-import { useRouter } from 'vue-router'
-
-// Store imports
-import { useTreeStore } from '@/stores/treeStore'
-import { useUserStore } from '@/stores/userStore'
-
-// Component imports
-import BaseButton from '@/components/BaseButton.vue'
-import TreeCard from '@/components/TreeCard.vue'
-
-// ============================================================================
-// REACTIVE STATE
-// ============================================================================
-
-const router = useRouter()
-const treeStore = useTreeStore()
-const userStore = useUserStore()
-
-const mapContainer = ref(null)
-const map = ref(null)
-const markers = ref([])
-const selectedTree = ref(null)
-const isLoading = ref(true)
-const showSidebar = ref(false)
-
-// Map configuration
-const defaultCenter = [40.7829, -73.9654] // New York City
-const defaultZoom = 10
-
-// ============================================================================
-// COMPUTED PROPERTIES
-// ============================================================================
-
-// ============================================================================
-// MAP FUNCTIONS
-// ============================================================================
-
-const initializeMap = async () => {
-  try {
-    // For MVP, we'll use a simple mock map instead of actual Leaflet
-    // This avoids the complexity of loading external dependencies
-    await nextTick()
-    
-    if (!mapContainer.value) return
-
-    // Create mock map display
-    const mockMap = document.createElement('div')
-    mockMap.className = 'mock-map'
-    mockMap.innerHTML = `
-      <div class="mock-map__info">
-        <h3>🗺️ Interactive Map</h3>
-        <p>Map integration coming soon!</p>
-        <p>Trees will be displayed as interactive pins</p>
-      </div>
-    `
-    
-    mapContainer.value.appendChild(mockMap)
-    
-    // Add tree markers to the mock display
-    addTreeMarkers()
-    
-  } catch (error) {
-    console.error('Failed to initialize map:', error)
-  }
-}
-
-const addTreeMarkers = () => {
-  if (!treeStore.trees.length) return
-
-  // Clear existing markers
-  markers.value = []
-
-  // Create mock markers for each tree
-  treeStore.trees.forEach(tree => {
-    const marker = createMockMarker(tree)
-    markers.value.push(marker)
-  })
-}
-
-const createMockMarker = (tree) => {
-  const marker = document.createElement('div')
-  marker.className = 'mock-marker'
-  marker.innerHTML = `
-    <div class="mock-marker__pin">🌳</div>
-    <div class="mock-marker__label">${tree.name}</div>
-  `
-  
-  marker.addEventListener('click', () => {
-    handleMarkerClick(tree)
-  })
-  
-  if (mapContainer.value) {
-    const mockMap = mapContainer.value.querySelector('.mock-map')
-    if (mockMap) {
-      mockMap.appendChild(marker)
-    }
-  }
-  
-  return { element: marker, tree }
-}
-
-// ============================================================================
-// EVENT HANDLERS
-// ============================================================================
-
-const handleMarkerClick = (tree) => {
-  selectedTree.value = tree
-  treeStore.selectTree(tree)
-  showSidebar.value = true
-}
-
-const handleTreeCardClick = (tree) => {
-  selectedTree.value = tree
-  treeStore.selectTree(tree)
-  
-  // Center map on tree (mock behavior)
-  console.log(`Centering map on ${tree.name}`)
-}
-
-const handleAddTree = () => {
-  router.push('/add-tree')
-}
-
-const handleCloseSidebar = () => {
-  showSidebar.value = false
-  selectedTree.value = null
-  treeStore.clearSelection()
-}
-
-const handleGoHome = () => {
-  router.push('/')
-}
-
-// ============================================================================
-// WATCHERS
-// ============================================================================
-
-watch(() => treeStore.trees, () => {
-  if (map.value) {
-    addTreeMarkers()
-  }
-}, { deep: true })
-
-// ============================================================================
-// LIFECYCLE
-// ============================================================================
-
-onMounted(async () => {
-  try {
-    // Load tree data
-    await treeStore.fetchTrees()
-    
-    // Initialize map
-    await initializeMap()
-    
-    // Check if we have a selected tree from navigation
-    if (treeStore.selectedTree) {
-      selectedTree.value = treeStore.selectedTree
-      showSidebar.value = true
-    }
-    
-  } catch (error) {
-    console.error('Failed to load map view:', error)
-  } finally {
-    isLoading.value = false
-  }
-})
-
-onUnmounted(() => {
-  // Cleanup map resources
-  if (map.value) {
-    // Cleanup would go here for real Leaflet map
-  }
-})
-</script>
-
 <template>
   <div class="map-view">
     <!-- Header -->
@@ -211,385 +17,446 @@ onUnmounted(() => {
 
     <!-- Main Content -->
     <main class="map-view__main">
-      <!-- Loading State -->
-      <div v-if="isLoading" class="map-view__loading" aria-live="polite">
-        <div class="map-view__loading-content">
-          <div class="map-view__spinner"></div>
-          <p>Loading tree map...</p>
-        </div>
-      </div>
-
       <!-- Map Container -->
       <div 
-        v-else
         ref="mapContainer" 
         class="map-view__map-container"
         role="application"
         aria-label="Interactive map showing tree locations"
       >
-        <!-- Map will be initialized here -->
-      </div>
-
-      <!-- Tree List (Mobile) -->
-      <div class="map-view__tree-list" v-if="!isLoading">
-        <h3>Trees on Map ({{ treeStore.trees.length }})</h3>
-        <div class="map-view__tree-grid">
-          <div 
-            v-for="tree in treeStore.trees" 
-            :key="tree.id"
-            class="map-view__tree-item"
-            @click="handleTreeCardClick(tree)"
-            role="button"
-            tabindex="0"
-            :aria-label="`View ${tree.name} on map`"
-          >
-            <img :src="tree.image.url" :alt="tree.image.alt" class="map-view__tree-thumb" />
-            <div class="map-view__tree-info">
-              <h4>{{ tree.name }}</h4>
-              <p>{{ tree.species }}</p>
-              <small>{{ tree.user.name }}</small>
-            </div>
-          </div>
+        <!-- Loading overlay -->
+        <div v-if="isLoading" class="map-view__loading-overlay">
+          <div class="map-view__spinner"></div>
+          <p>Loading map...</p>
         </div>
       </div>
     </main>
-
-    <!-- Tree Details Sidebar -->
-    <aside 
-      v-if="selectedTree && showSidebar" 
-      class="map-view__sidebar"
-      role="dialog"
-      aria-modal="true"
-      :aria-label="`Details for ${selectedTree.name}`"
-    >
-      <div class="map-view__sidebar-header">
-        <h2>Tree Details</h2>
-        <BaseButton 
-          variant="ghost" 
-          @click="handleCloseSidebar"
-          aria-label="Close tree details"
-        >
-          ✕
-        </BaseButton>
-      </div>
-      
-      <div class="map-view__sidebar-content">
-        <TreeCard 
-          :tree="selectedTree" 
-          @click="() => {}" 
-        />
-        
-        <div class="map-view__tree-actions">
-          <BaseButton variant="secondary" @click="handleCloseSidebar">
-            Close
-          </BaseButton>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Sidebar Backdrop -->
-    <div 
-      v-if="showSidebar" 
-      class="map-view__backdrop"
-      @click="handleCloseSidebar"
-      aria-hidden="true"
-    ></div>
   </div>
 </template>
 
-<style scoped lang="scss">
-@use '@/styles/variables' as *;
+<script setup>
+import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+
+// Fix Leaflet default marker icons in Webpack/Vite
+delete L.Icon.Default.prototype._getIconUrl
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png'
+})
+
+// Import stores and components
+import { useTreeStore } from '@/stores/treeStore'
+import BaseButton from '@/components/BaseButton.vue'
+
+// ============================================================================
+// COMPOSABLES & STORES
+// ============================================================================
+
+const router = useRouter()
+const treeStore = useTreeStore()
+
+// ============================================================================
+// REACTIVE STATE
+// ============================================================================
+
+const mapContainer = ref(null)
+const map = ref(null)
+const markers = ref([])
+const isLoading = ref(true)
+const selectedTree = ref(null)
+const showSidebar = ref(false)
+
+const defaultTreeImage = '/images/default-tree.png'
+
+// ============================================================================
+// LEAFLET MAP INTEGRATION
+// ============================================================================
+
+const initializeMap = async () => {
+  try {
+    console.log('🗺️ Starting map initialization...')
+    
+    // Wait for DOM to be ready
+    await nextTick()
+    
+    if (!mapContainer.value) {
+      console.error('❌ Map container not found!')
+      isLoading.value = false
+      return
+    }
+
+    console.log('✅ Map container found:', {
+      width: mapContainer.value.offsetWidth,
+      height: mapContainer.value.offsetHeight
+    })
+
+    // Create the map
+    map.value = L.map(mapContainer.value, {
+      center: [40.7829, -73.9654], // NYC coordinates
+      zoom: 10,
+      zoomControl: true,
+      attributionControl: true
+    })
+
+    console.log('✅ Map instance created')
+
+    // Add OpenStreetMap tiles
+    const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    })
+
+    tileLayer.addTo(map.value)
+    console.log('✅ Tile layer added')
+
+    // Wait for map to be ready, then add trees
+    map.value.whenReady(() => {
+      console.log('✅ Map is ready!')
+      setTimeout(() => {
+        addTreeMarkers()
+        isLoading.value = false
+        console.log('✅ Map initialization complete')
+      }, 100)
+    })
+
+  } catch (error) {
+    console.error('❌ Map initialization failed:', error)
+    isLoading.value = false
+  }
+}
+
+const addTreeMarkers = () => {
+  console.log('🔍 addTreeMarkers called:', {
+    mapExists: !!map.value,
+    treesCount: treeStore.trees.length,
+    trees: treeStore.trees.map(t => ({ id: t.id, name: t.name, lat: t.location?.latitude, lng: t.location?.longitude }))
+  })
+
+  if (!map.value || !treeStore.trees.length) {
+    console.log('❌ Cannot add markers: map exists:', !!map.value, 'trees count:', treeStore.trees.length)
+    return
+  }
+
+  console.log('🌳 Adding tree markers to map:', treeStore.trees.length)
+
+  // Clear existing markers
+  console.log('🧹 Clearing existing markers:', markers.value.length)
+  markers.value.forEach(marker => {
+    map.value.removeLayer(marker.leafletMarker)
+  })
+  markers.value = []
+
+  // Create custom tree icon
+  const treeIcon = L.divIcon({
+    html: '🌳',
+    className: 'tree-marker',
+    iconSize: [40, 40],
+    iconAnchor: [20, 20],
+    popupAnchor: [0, -20]
+  })
+
+  // Add markers for each tree
+  let markersAdded = 0
+  treeStore.trees.forEach(tree => {
+    console.log('🔍 Processing tree:', tree.name, {
+      hasLocation: !!tree.location,
+      lat: tree.location?.latitude,
+      lng: tree.location?.longitude
+    })
+
+    if (tree.location?.latitude && tree.location?.longitude) {
+      const leafletMarker = L.marker([tree.location.latitude, tree.location.longitude], {
+        icon: treeIcon
+      }).addTo(map.value)
+
+      // Create popup content
+      const popupContent = `
+        <div class="tree-popup">
+          <img src="${tree.image?.url || defaultTreeImage}" alt="${tree.image?.alt || tree.species}" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
+          <h4 style="margin: 0 0 4px 0; font-size: 16px;">${tree.name}</h4>
+          <p style="margin: 0 0 4px 0; color: #666; font-size: 14px;">${tree.species}</p>
+          <p style="margin: 0 0 8px 0; color: #888; font-size: 12px;">Planted by ${tree.user?.name || 'Anonymous'}</p>
+          <button onclick="window.showTreeDetails('${tree.id}')" style="background: #2E7D32; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;">View Details</button>
+        </div>
+      `
+
+      leafletMarker.bindPopup(popupContent, {
+        maxWidth: 250,
+        className: 'tree-popup-container'
+      })
+
+      // Add click event
+      leafletMarker.on('click', () => {
+        handleMarkerClick(tree)
+      })
+
+      markers.value.push({
+        tree,
+        leafletMarker
+      })
+      markersAdded++
+      console.log(`✅ Added marker ${markersAdded} for ${tree.name}`)
+    } else {
+      console.log('⚠️ Skipping tree (no coordinates):', tree.name)
+    }
+  })
+
+  // Fit map to show all markers if there are any
+  if (markers.value.length > 0) {
+    const group = new L.featureGroup(markers.value.map(m => m.leafletMarker))
+    map.value.fitBounds(group.getBounds().pad(0.1))
+  }
+
+  console.log('Added', markers.value.length, 'tree markers to map')
+}
+
+// ============================================================================
+// GLOBAL FUNCTION FOR POPUP BUTTONS
+// ============================================================================
+
+// Make function globally available for popup buttons
+if (typeof window !== 'undefined') {
+  window.showTreeDetails = (treeId) => {
+    const tree = treeStore.trees.find(t => t.id === treeId)
+    if (tree) {
+      handleMarkerClick(tree)
+    }
+  }
+}
+
+// ============================================================================
+// EVENT HANDLERS
+// ============================================================================
+
+const handleMarkerClick = (tree) => {
+  selectedTree.value = tree
+  treeStore.selectTree(tree)
+  showSidebar.value = true
+}
+
+const handleTreeCardClick = (tree) => {
+  // Zoom to tree on map and show details
+  if (tree.location?.latitude && tree.location?.longitude && map.value) {
+    map.value.setView([tree.location.latitude, tree.location.longitude], 15)
+    
+    // Find and open the marker popup
+    const marker = markers.value.find(m => m.tree.id === tree.id)
+    if (marker) {
+      marker.leafletMarker.openPopup()
+    }
+  }
+  
+  handleMarkerClick(tree)
+}
+
+const handleCloseSidebar = () => {
+  showSidebar.value = false
+  selectedTree.value = null
+  treeStore.selectTree(null)
+}
+
+const handleGoHome = () => {
+  router.push('/')
+}
+
+const handleAddTree = () => {
+  router.push('/add-tree')
+}
+
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
+
+const formatDate = (dateString) => {
+  if (!dateString) return 'Unknown'
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+}
+
+// ============================================================================
+// LIFECYCLE HOOKS
+// ============================================================================
+
+onMounted(async () => {
+  console.log('🚀 MapView component mounted')
+  
+  try {
+    // Only fetch trees if we don't have any (first load)
+    if (treeStore.trees.length === 0) {
+      console.log('📦 Fetching trees for first time...')
+      await treeStore.fetchTrees()
+    } else {
+      console.log('📦 Using existing trees from store:', treeStore.trees.length)
+    }
+    
+    console.log(`✅ Working with ${treeStore.trees.length} trees`)
+    
+    // Initialize map
+    await initializeMap()
+    
+  } catch (error) {
+    console.error('❌ Error in onMounted:', error)
+    isLoading.value = false
+  }
+})
+
+// Watch for changes in the trees array to update markers
+watch(() => treeStore.trees, (newTrees, oldTrees) => {
+  console.log('🔄 Trees watcher triggered!', {
+    newCount: newTrees?.length || 0,
+    oldCount: oldTrees?.length || 0,
+    mapExists: !!map.value,
+    isClient: import.meta.env.SSR === false
+  })
+  
+  if (map.value && newTrees && newTrees.length > 0) {
+    console.log('🎯 Calling addTreeMarkers from watcher')
+    addTreeMarkers()
+  }
+}, { deep: true, immediate: false })
+
+onUnmounted(() => {
+  // Clean up map
+  if (map.value) {
+    map.value.remove()
+  }
+  
+  // Clean up global function
+  if (typeof window !== 'undefined') {
+    delete window.showTreeDetails
+  }
+})
+</script>
+
+<style lang="scss" scoped>
+@use '../styles/variables' as *;
+@use '../styles/base' as *;
 
 .map-view {
   height: 100vh;
+  overflow: hidden;
+  background-color: $background-dark;
   display: flex;
   flex-direction: column;
-  position: relative;
-
-  // ============================================================================
-  // HEADER
-  // ============================================================================
 
   &__header {
-    background-color: var(--color-background-dark);
+    background-color: $background-dark;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: var(--z-sticky);
+    padding: $spacing-md;
+    flex-shrink: 0;
   }
 
   &__nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--spacing-md);
+    max-width: $max-content-width;
+    margin: 0 auto;
   }
 
   &__nav-actions {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: $spacing-sm;
+    align-items: center;
   }
-
-  // ============================================================================
-  // MAIN CONTENT
-  // ============================================================================
 
   &__main {
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding: $spacing-md;
     overflow: hidden;
-    
-    @include respond-to('desktop') {
-      flex-direction: row;
-    }
   }
-
-  // ============================================================================
-  // LOADING STATE
-  // ============================================================================
-
-  &__loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    background-color: var(--color-background-dark);
-  }
-
-  &__loading-content {
-    text-align: center;
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  &__spinner {
-    width: 4rem;
-    height: 4rem;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid var(--color-primary-green);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto var(--spacing-md);
-  }
-
-  // ============================================================================
-  // MAP CONTAINER
-  // ============================================================================
 
   &__map-container {
     flex: 1;
     position: relative;
-    background-color: #1a1a1a;
+    overflow: hidden;
+    border-radius: $border-radius;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
   }
 
-  // ============================================================================
-  // TREE LIST (MOBILE)
-  // ============================================================================
-
-  &__tree-list {
-    background-color: var(--color-background-dark);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: var(--spacing-md);
-    max-height: 40vh;
-    overflow-y: auto;
-    
-    @include respond-to('desktop') {
-      display: none;
-    }
-    
-    h3 {
-      color: var(--color-primary-green);
-      margin-bottom: var(--spacing-md);
-    }
-  }
-
-  &__tree-grid {
+  &__loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-
-  &__tree-item {
-    display: flex;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-sm);
-    border-radius: var(--border-radius-medium);
-    background-color: rgba(255, 255, 255, 0.05);
-    cursor: pointer;
-    transition: background-color var(--transition-normal);
-    
-    &:hover,
-    &:focus {
-      background-color: rgba(255, 255, 255, 0.1);
-      outline: none;
-    }
-  }
-
-  &__tree-thumb {
-    width: 5rem;
-    height: 5rem;
-    border-radius: var(--border-radius-small);
-    object-fit: cover;
-  }
-
-  &__tree-info {
-    flex: 1;
-    
-    h4 {
-      color: var(--color-primary-green);
-      margin-bottom: 0.2rem;
-      font-size: var(--font-size-small);
-    }
-    
-    p {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 1.2rem;
-      margin-bottom: 0.2rem;
-    }
-    
-    small {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 1.1rem;
-    }
-  }
-
-  // ============================================================================
-  // SIDEBAR
-  // ============================================================================
-
-  &__sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 90vw;
-    max-width: 40rem;
-    height: 100vh;
-    background-color: var(--color-background-dark);
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: var(--z-modal);
-    overflow-y: auto;
-    transform: translateX(0);
-    transition: transform var(--transition-normal);
-    
-    @include respond-to('desktop') {
-      width: 40rem;
-    }
-  }
-
-  &__sidebar-header {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: var(--spacing-md);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    
-    h2 {
-      color: var(--color-primary-green);
-      margin: 0;
-    }
+    justify-content: center;
+    background: $background-dark;
+    color: $text-primary;
+    z-index: 1000;
   }
 
-  &__sidebar-content {
-    padding: var(--spacing-md);
-  }
-
-  &__tree-actions {
-    margin-top: var(--spacing-lg);
-    display: flex;
-    gap: var(--spacing-sm);
-  }
-
-  // ============================================================================
-  // BACKDROP
-  // ============================================================================
-
-  &__backdrop {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: var(--z-modal-backdrop);
-  }
-
-  // ============================================================================
-  // ANIMATIONS
-  // ============================================================================
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  &__spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid $primary-light;
+    border-top: 3px solid $primary-color;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: $spacing-sm;
   }
 }
 
-// ============================================================================
-// MOCK MAP STYLES
-// ============================================================================
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
-:deep(.mock-map) {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #1a4a1a 0%, #2e7d32 100%);
+// Global styles for tree markers and map popup (not scoped)
+:global(.tree-marker) {
+  font-size: 32px;
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
   
-  &__info {
-    text-align: center;
-    color: white;
-    z-index: 2;
-    
-    h3 {
-      font-size: 2.4rem;
-      margin-bottom: var(--spacing-sm);
-    }
-    
-    p {
-      font-size: var(--font-size-large);
-      margin-bottom: 0.5rem;
-      opacity: 0.9;
-    }
+  &:hover {
+    transform: scale(1.1);
   }
 }
 
-:deep(.mock-marker) {
-  position: absolute;
-  cursor: pointer;
-  z-index: 3;
+:global(.tree-popup-container) {
+  .leaflet-popup-content-wrapper {
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
   
-  &:nth-child(2) { top: 20%; left: 30%; }
-  &:nth-child(3) { top: 40%; left: 60%; }
-  &:nth-child(4) { top: 60%; left: 25%; }
-  &:nth-child(5) { top: 70%; left: 70%; }
-  &:nth-child(6) { top: 30%; left: 80%; }
+  .leaflet-popup-content {
+    margin: 0;
+    line-height: 1.4;
+  }
   
-  &__pin {
-    font-size: 2rem;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-    transition: transform var(--transition-normal);
+  .tree-popup {
+    padding: 12px;
     
-    &:hover {
-      transform: scale(1.2);
+    h4 {
+      color: #333;
+      font-weight: 600;
+    }
+    
+    button:hover {
+      background: #1B5E20 !important;
+      transform: translateY(-1px);
     }
   }
   
-  &__label {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 0.4rem 0.8rem;
-    border-radius: var(--border-radius-small);
-    font-size: 1.2rem;
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-  }
-  
-  &:hover &__label {
-    opacity: 1;
+  .leaflet-popup-tip {
+    background: white;
   }
 }
 </style>

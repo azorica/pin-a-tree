@@ -1,7 +1,7 @@
 // Base styles for Pin-a-Tree application
 // Global reset and base typography
 
-@import 'variables';
+@use 'variables' as *;
 
 // ============================================================================
 // RESET & NORMALIZE
@@ -21,12 +21,12 @@ html {
 }
 
 body {
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-regular);
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
   line-height: 1.6;
-  color: var(--color-text-primary);
-  background-color: var(--color-background-dark);
+  color: $text-primary;
+  background-color: $background-dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -36,27 +36,27 @@ body {
 // ============================================================================
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-heading);
-  font-weight: var(--font-weight-bold);
+  font-family: $font-family-heading;
+  font-weight: $font-weight-bold;
   line-height: 1.2;
-  margin-bottom: var(--spacing-sm);
-  color: var(--color-text-primary);
+  margin-bottom: $spacing-sm;
+  color: $text-primary;
 }
 
 h1 {
-  font-size: var(--font-size-heading-1);
+  font-size: $font-size-heading-1;
 }
 
 h2 {
-  font-size: var(--font-size-heading-2);
+  font-size: $font-size-heading-2;
 }
 
 h3 {
-  font-size: var(--font-size-heading-3);
+  font-size: $font-size-heading-3;
 }
 
 p {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: $spacing-sm;
   
   &:last-child {
     margin-bottom: 0;
@@ -64,18 +64,18 @@ p {
 }
 
 a {
-  color: var(--color-primary-green);
+  color: $primary-green;
   text-decoration: none;
-  transition: color var(--transition-normal);
+  transition: color $transition-normal;
   
   &:hover,
   &:focus {
-    color: var(--color-secondary-green);
+    color: $secondary-green;
     text-decoration: underline;
   }
   
   &:focus {
-    outline: 2px solid var(--color-primary-green);
+    outline: 2px solid $primary-green;
     outline-offset: 2px;
   }
 }
@@ -111,12 +111,12 @@ img {
 // ============================================================================
 
 .container {
-  max-width: var(--max-content-width);
+  max-width: $max-content-width;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: 0 $spacing-md;
   
-  @media (min-width: 768px) {
-    padding: 0 var(--spacing-lg);
+  @include width-at-least('medium') {
+    padding: 0 $spacing-lg;
   }
 }
 
@@ -133,12 +133,12 @@ img {
   position: absolute;
   top: -40px;
   left: 6px;
-  background: var(--color-primary-green);
+  background: $primary-green;
   color: white;
   padding: 8px;
   text-decoration: none;
   border-radius: 4px;
-  z-index: var(--z-modal);
+  z-index: $z-modal;
   
   &:focus {
     top: 6px;

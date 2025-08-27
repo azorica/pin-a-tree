@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minimal Leaflet Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
+        #maptest { 
+            height: 400px; 
+            width: 100%; 
+            background: red; 
+            border: 3px solid green;
+            margin-top: 20px;
+        }
+        .status { 
+            background: #f0f0f0; 
+            padding: 10px; 
+            margin: 10px 0; 
+            border: 1px solid #ddd; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Minimal Leaflet Test</h1>
+    <div class="status" id="status">Starting...</div>
+    
+    <div id="maptest"></div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const status = document.getElementById('status');
+        
+        function log(msg) {
+            console.log(msg);
+            status.innerHTML += '<br>' + msg;
+        }
+        
+        log('Script loaded');
+        log('Leaflet version: ' + L.version);
+        
+        try {
+            log('Creating map...');
+            const map = L.map('maptest').setView([40.7829, -73.9654], 10);
+            log('Map created successfully');
+            
+            log('Adding tiles...');
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            log('Tiles added');
+            
+            log('Adding marker...');
+            L.marker([40.7829, -73.9654])
+                .addTo(map)
+                .bindPopup('Test marker')
+                .openPopup();
+            log('Marker added - TEST COMPLETE!');
+            
+        } catch (error) {
+            log('ERROR: ' + error.message);
+            console.error(error);
+        }
+    </script>
+</body>
+</html>

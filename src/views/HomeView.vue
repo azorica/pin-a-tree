@@ -249,33 +249,33 @@ onMounted(async () => {
   // ============================================================================
 
   &__header {
-    background-color: var(--color-background-dark);
+    background-color: $background-dark;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: sticky;
     top: 0;
-    z-index: var(--z-sticky);
+    z-index: $z-sticky;
   }
 
   &__nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--spacing-md) var(--spacing-md);
+    padding: $spacing-md $spacing-md;
     
-    @include respond-to('tablet') {
-      padding: var(--spacing-md) var(--spacing-lg);
+    @include width-at-least('medium') {
+      padding: $spacing-md $spacing-lg;
     }
   }
 
   &__logo h1 {
-    font-size: var(--font-size-heading-3);
-    color: var(--color-primary-green);
+    font-size: $font-size-heading-3;
+    color: $primary-green;
     margin: 0;
   }
 
   &__nav-actions {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: $spacing-sm;
     align-items: center;
   }
 
@@ -289,9 +289,9 @@ onMounted(async () => {
 
   &__section-title {
     text-align: center;
-    margin-bottom: var(--spacing-lg);
-    font-size: var(--font-size-heading-2);
-    color: var(--color-text-primary);
+    margin-bottom: $spacing-lg;
+    font-size: $font-size-heading-2;
+    color: $text-primary;
   }
 
   // ============================================================================
@@ -299,8 +299,8 @@ onMounted(async () => {
   // ============================================================================
 
   &__hero {
-    background: linear-gradient(135deg, var(--color-background-dark) 0%, #1a4a1a 100%);
-    padding: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, $background-dark 0%, #1a4a1a 100%);
+    padding: $spacing-xl 0;
     text-align: center;
   }
 
@@ -310,19 +310,19 @@ onMounted(async () => {
   }
 
   &__hero-title {
-    font-size: var(--font-size-heading-1);
-    margin-bottom: var(--spacing-md);
-    color: var(--color-text-primary);
+    font-size: $font-size-heading-1;
+    margin-bottom: $spacing-md;
+    color: $text-primary;
     
-    @include respond-to('mobile') {
+    @include width-less-than('small') {
       font-size: 2.8rem;
     }
   }
 
   &__hero-subtitle {
-    font-size: var(--font-size-large);
+    font-size: $font-size-large;
     line-height: 1.6;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: $spacing-lg;
     color: rgba(255, 255, 255, 0.9);
     max-width: 60rem;
     margin-left: auto;
@@ -331,7 +331,7 @@ onMounted(async () => {
 
   &__hero-actions {
     display: flex;
-    gap: var(--spacing-md);
+    gap: $spacing-md;
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -341,16 +341,16 @@ onMounted(async () => {
   // ============================================================================
 
   &__features {
-    padding: var(--spacing-xl) 0;
+    padding: $spacing-xl 0;
     background-color: rgba(255, 255, 255, 0.02);
   }
 
   &__features-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
+    gap: $spacing-lg;
     
-    @include respond-to('tablet') {
+    @include width-at-least('medium') {
       grid-template-columns: repeat(3, 1fr);
     }
   }
@@ -362,8 +362,8 @@ onMounted(async () => {
     border: 1px solid rgba(255, 255, 255, 0.1);
     
     h4 {
-      color: var(--color-primary-green);
-      margin-bottom: var(--spacing-sm);
+      color: $primary-green;
+      margin-bottom: $spacing-sm;
     }
     
     p {
@@ -374,7 +374,7 @@ onMounted(async () => {
 
   &__feature-icon {
     font-size: 4rem;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: $spacing-md;
   }
 
   // ============================================================================
@@ -382,15 +382,15 @@ onMounted(async () => {
   // ============================================================================
 
   &__stats {
-    padding: var(--spacing-xl) 0;
+    padding: $spacing-xl 0;
   }
 
   &__stats-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--spacing-md);
+    gap: $spacing-md;
     
-    @include respond-to('tablet') {
+    @include width-at-least('medium') {
       grid-template-columns: repeat(3, 1fr);
     }
   }
@@ -400,21 +400,21 @@ onMounted(async () => {
   // ============================================================================
 
   &__recent-trees {
-    padding: var(--spacing-xl) 0;
+    padding: $spacing-xl 0;
     background-color: rgba(255, 255, 255, 0.02);
   }
 
   &__trees-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
     
-    @include respond-to('tablet') {
+    @include width-at-least('medium') {
       grid-template-columns: repeat(2, 1fr);
     }
     
-    @include respond-to('desktop') {
+    @include width-at-least('large') {
       grid-template-columns: repeat(3, 1fr);
     }
   }
@@ -428,12 +428,12 @@ onMounted(async () => {
   // ============================================================================
 
   &__loading {
-    padding: var(--spacing-xl) 0;
+    padding: $spacing-xl 0;
     text-align: center;
     
     p {
       color: rgba(255, 255, 255, 0.7);
-      font-size: var(--font-size-large);
+      font-size: $font-size-large;
     }
   }
 
@@ -443,7 +443,7 @@ onMounted(async () => {
 
   &__footer {
     background-color: rgba(0, 0, 0, 0.3);
-    padding: var(--spacing-lg) 0;
+    padding: $spacing-lg 0;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     

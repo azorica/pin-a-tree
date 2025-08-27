@@ -400,28 +400,28 @@ onMounted(() => {
 
 .tree-form-view {
   min-height: 100vh;
-  background-color: var(--color-background-dark);
+  background-color: $background-dark;
 
   // ============================================================================
   // HEADER
   // ============================================================================
 
   &__header {
-    background: linear-gradient(135deg, var(--color-background-dark) 0%, #1a4a1a 100%);
-    padding: var(--spacing-lg) 0;
+    background: linear-gradient(135deg, $background-dark 0%, #1a4a1a 100%);
+    padding: $spacing-lg 0;
     text-align: center;
   }
 
   &__title {
-    font-size: var(--font-size-heading-1);
-    color: var(--color-text-primary);
-    margin-bottom: var(--spacing-sm);
+    font-size: $font-size-heading-1;
+    color: $text-primary;
+    margin-bottom: $spacing-sm;
   }
 
   &__subtitle {
-    font-size: var(--font-size-large);
+    font-size: $font-size-large;
     color: rgba(255, 255, 255, 0.8);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: $spacing-lg;
   }
 
   // ============================================================================
@@ -431,8 +431,8 @@ onMounted(() => {
   &__progress {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
   }
 
   &__progress-step {
@@ -443,16 +443,16 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: var(--font-weight-bold);
+    font-weight: $font-weight-bold;
     color: rgba(255, 255, 255, 0.6);
     
     &--active {
-      background-color: var(--color-primary-green);
+      background-color: $primary-green;
       color: white;
     }
     
     &--completed {
-      background-color: var(--color-secondary-green);
+      background-color: $secondary-green;
       color: white;
     }
   }
@@ -462,7 +462,7 @@ onMounted(() => {
   // ============================================================================
 
   &__main {
-    padding: var(--spacing-xl) 0;
+    padding: $spacing-xl 0;
   }
 
   &__form {
@@ -476,8 +476,8 @@ onMounted(() => {
     border: 1px solid rgba(255, 255, 255, 0.1);
 
     h2 {
-      color: var(--color-primary-green);
-      margin-bottom: var(--spacing-lg);
+      color: $primary-green;
+      margin-bottom: $spacing-lg;
       text-align: center;
     }
   }
@@ -491,20 +491,20 @@ onMounted(() => {
   }
 
   &__upload-area {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: $spacing-md;
   }
 
   &__upload-label {
     display: block;
     border: 2px dashed rgba(255, 255, 255, 0.3);
-    border-radius: var(--border-radius-large);
-    padding: var(--spacing-lg);
+    border-radius: $border-radius-large;
+    padding: $spacing-lg;
     text-align: center;
     cursor: pointer;
-    transition: all var(--transition-normal);
+    transition: all $transition-normal;
     
     &:hover {
-      border-color: var(--color-primary-green);
+      border-color: $primary-green;
       background-color: rgba(46, 125, 50, 0.1);
     }
 
@@ -518,7 +518,7 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: $spacing-sm;
     color: rgba(255, 255, 255, 0.8);
   }
 
@@ -528,7 +528,7 @@ onMounted(() => {
 
   &__preview {
     position: relative;
-    border-radius: var(--border-radius-large);
+    border-radius: $border-radius-large;
     overflow: hidden;
   }
 
@@ -547,7 +547,7 @@ onMounted(() => {
     justify-content: center;
     color: white;
     opacity: 0;
-    transition: opacity var(--transition-normal);
+    transition: opacity $transition-normal;
   }
 
   &__preview:hover &__preview-overlay {
@@ -559,9 +559,9 @@ onMounted(() => {
   // ============================================================================
 
   &__gps-status {
-    margin-top: var(--spacing-md);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius-medium);
+    margin-top: $spacing-md;
+    padding: $spacing-md;
+    border-radius: $border-radius-medium;
     text-align: center;
   }
 
@@ -586,8 +586,8 @@ onMounted(() => {
   &__fields {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
   }
 
   &__field {
@@ -597,22 +597,22 @@ onMounted(() => {
   }
 
   &__label {
-    font-weight: var(--font-weight-medium);
-    color: var(--color-text-primary);
+    font-weight: $font-weight-medium;
+    color: $text-primary;
   }
 
   &__input,
   &__textarea {
     padding: 1.2rem;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: var(--border-radius-medium);
+    border-radius: $border-radius-medium;
     background-color: rgba(255, 255, 255, 0.05);
-    color: var(--color-text-primary);
-    font-size: var(--font-size-base);
+    color: $text-primary;
+    font-size: $font-size-base;
     
     &:focus {
       outline: none;
-      border-color: var(--color-primary-green);
+      border-color: $primary-green;
       box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
     }
     
@@ -632,14 +632,14 @@ onMounted(() => {
 
   &__location-found,
   &__location-manual {
-    margin-bottom: var(--spacing-lg);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius-medium);
+    margin-bottom: $spacing-lg;
+    padding: $spacing-md;
+    border-radius: $border-radius-medium;
     background-color: rgba(255, 255, 255, 0.05);
     
     h3 {
-      color: var(--color-primary-green);
-      margin-bottom: var(--spacing-sm);
+      color: $primary-green;
+      margin-bottom: $spacing-sm;
     }
   }
 
@@ -650,10 +650,10 @@ onMounted(() => {
   &__actions {
     display: flex;
     justify-content: space-between;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
     
-    @include respond-to('mobile') {
+    @include width-less-than('small') {
       flex-direction: column;
     }
   }
@@ -663,8 +663,8 @@ onMounted(() => {
   // ============================================================================
 
   &__error {
-    color: var(--color-error);
-    font-size: var(--font-size-small);
+    color: $error;
+    font-size: $font-size-small;
     margin-top: 0.5rem;
   }
 }

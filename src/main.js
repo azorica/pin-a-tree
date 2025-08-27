@@ -3,6 +3,9 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
+// Import Leaflet CSS globally
+import 'leaflet/dist/leaflet.css'
+
 // Create Vue application
 const app = createApp(App)
 

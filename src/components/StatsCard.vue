@@ -169,14 +169,14 @@ onMounted(() => {
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
-  transition: all var(--transition-normal);
+  transition: all $transition-normal;
   position: relative;
   overflow: hidden;
 
   &:hover {
     transform: translateY(-2px);
-    border-color: var(--color-primary-green);
-    box-shadow: var(--shadow-large);
+    border-color: $primary-green;
+    box-shadow: $shadow-large;
   }
 
   // ============================================================================
@@ -185,12 +185,12 @@ onMounted(() => {
 
   &__icon {
     font-size: 4rem;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: $spacing-md;
     line-height: 1;
     
-    @include respond-to('mobile') {
+    @include width-less-than('small') {
       font-size: 3rem;
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: $spacing-sm;
     }
   }
 
@@ -205,25 +205,25 @@ onMounted(() => {
   }
 
   &__value {
-    font-size: var(--font-size-heading-1);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-primary-green);
+    font-size: $font-size-heading-1;
+    font-weight: $font-weight-bold;
+    color: $primary-green;
     line-height: 1;
     
-    @include respond-to('mobile') {
-      font-size: var(--font-size-heading-2);
+    @include width-less-than('small') {
+      font-size: $font-size-heading-2;
     }
   }
 
   &__label {
-    font-size: var(--font-size-base);
+    font-size: $font-size-base;
     color: rgba(255, 255, 255, 0.8);
-    font-weight: var(--font-weight-medium);
+    font-weight: $font-weight-medium;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     
-    @include respond-to('mobile') {
-      font-size: var(--font-size-small);
+    @include width-less-than('small') {
+      font-size: $font-size-small;
     }
   }
 
@@ -244,7 +244,7 @@ onMounted(() => {
       transparent 70%
     );
     opacity: 0;
-    transition: opacity var(--transition-normal);
+    transition: opacity $transition-normal;
   }
 
   &:hover::before {
@@ -255,8 +255,8 @@ onMounted(() => {
   // RESPONSIVE DESIGN
   // ============================================================================
 
-  @include respond-to('mobile') {
-    padding: var(--spacing-md);
+  @include width-less-than('small') {
+    padding: $spacing-md;
   }
 }
 </style>

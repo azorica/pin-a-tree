@@ -15,6 +15,9 @@ const USE_MOCK_DATA = true // Always true for MVP
 // Simulated delay for mock API calls
 const MOCK_DELAY = 800
 
+// In-memory storage for added trees (simulates database)
+let treesDatabase = [...mockTrees]
+
 // Helper function to simulate API delay
 const simulateApiDelay = () => new Promise(resolve => setTimeout(resolve, MOCK_DELAY))
 
@@ -25,7 +28,7 @@ class TreeService {
    */
   async getAllTrees() {
     await simulateApiDelay()
-    return [...mockTrees]
+    return [...treesDatabase]
   }
 
   /**
@@ -35,7 +38,7 @@ class TreeService {
    */
   async getTreeById(treeId) {
     await simulateApiDelay()
-    const tree = mockTrees.find(t => t.id === treeId)
+    const tree = treesDatabase.find(t => t.id === treeId)
     if (!tree) {
       throw new Error('Tree not found')
     }
@@ -64,6 +67,10 @@ class TreeService {
       status: 'healthy',
       createdAt: new Date().toISOString()
     }
+    
+    // Add to in-memory database
+    treesDatabase.push(newTree)
+    console.log('🌳 Tree added to database:', newTree.name, 'Total trees:', treesDatabase.length)
     
     return newTree
   }
