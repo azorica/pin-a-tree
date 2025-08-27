@@ -5,7 +5,7 @@
  * Handles user authentication workflow and profile management.
  *
  * Features:
- * - User authentication (mock for MVP)
+ * - User authentication with JWT tokens
  * - User profile management
  * - User statistics tracking
  * - Authentication state management
@@ -18,7 +18,8 @@
  * @state {Array} users - All users (for MVP mock data)
  *
  * Actions:
- * @action login - Authenticate user (mock implementation)
+ * @action login - Authenticate user with backend API
+ * @action register - Register new user with backend API
  * @action logout - Sign out current user
  * @action fetchUserProfile - Get user profile data
  * @action updateProfile - Update user profile information
@@ -38,12 +39,24 @@ export const useUserStore = defineStore('user', {
 
   getters: {
     userInitials: (state) => {
-      if (!state.currentUser?.name) return ''
-      return state.currentUser.name
+      if (!state.currentUser) return ''
+      const name = state.currentUser.firstName && state.currentUser.lastName 
+        ? `${state.currentUser.firstName} ${state.currentUser.lastName}`
+        : state.currentUser.username || state.currentUser.email || ''
+      
+      return name
         .split(' ')
         .map(word => word.charAt(0).toUpperCase())
         .join('')
         .slice(0, 2)
+    },
+
+    userDisplayName: (state) => {
+      if (!state.currentUser) return ''
+      if (state.currentUser.firstName && state.currentUser.lastName) {
+        return `${state.currentUser.firstName} ${state.currentUser.lastName}`
+      }
+      return state.currentUser.username || state.currentUser.email || ''
     },
 
     userStats: (state) => {
@@ -80,15 +93,16 @@ export const useUserStore = defineStore('user', {
       this.error = null
 
       try {
-        // Mock authentication - in real app, this would validate credentials
-        const user = await userService.authenticateUser(email, password)
-        this.currentUser = user
+        // Authenticate with backend API
+        const response = await userService.authenticateUser(email, password)
+        
+        // Response should contain user data and token
+        this.currentUser = response.user || response
         this.isAuthenticated = true
         
-        // Store auth state in localStorage for persistence
-        localStorage.setItem('pin-a-tree-user', JSON.stringify(user))
+        console.log('✅ Login successful:', this.currentUser)
         
-        return user
+        return this.currentUser
       } catch (error) {
         this.error = 'Login failed: ' + error.message
         console.error('Login error:', error)
@@ -98,25 +112,44 @@ export const useUserStore = defineStore('user', {
       }
     },
 
-    async loginAsGuest(userData) {
-      // Quick guest login for MVP - creates temporary user
+    async register(userData) {
       this.isLoading = true
       this.error = null
 
       try {
-        const guestUser = await userService.createGuestUser(userData)
-        this.currentUser = guestUser
+        // Register with backend API
+        const response = await userService.registerUser(userData)
+        
+        // Response should contain user data and token
+        this.currentUser = response.user || response
         this.isAuthenticated = true
         
-        localStorage.setItem('pin-a-tree-user', JSON.stringify(guestUser))
+        console.log('✅ Registration successful:', this.currentUser)
         
-        return guestUser
+        return this.currentUser
       } catch (error) {
-        this.error = 'Guest login failed: ' + error.message
-        console.error('Guest login error:', error)
+        this.error = 'Registration failed: ' + error.message
+        console.error('Registration error:', error)
         throw error
       } finally {
         this.isLoading = false
+      }
+    },
+
+    async checkAuthStatus() {
+      // Check if user is already authenticated (e.g., on app start)
+      if (userService.isAuthenticated()) {
+        try {
+          this.isLoading = true
+          const user = await userService.getCurrentUser()
+          this.currentUser = user
+          this.isAuthenticated = true
+        } catch (error) {
+          // Token might be expired, clear it
+          this.logout()
+        } finally {
+          this.isLoading = false
+        }
       }
     },
 
@@ -125,23 +158,15 @@ export const useUserStore = defineStore('user', {
       this.isAuthenticated = false
       this.error = null
       
-      // Clear stored auth state
-      localStorage.removeItem('pin-a-tree-user')
+      // Clear auth token from userService
+      userService.logout()
+      
+      console.log('🚪 User logged out')
     },
 
     async restoreAuthState() {
-      // Restore authentication state from localStorage on app init
-      try {
-        const storedUser = localStorage.getItem('pin-a-tree-user')
-        if (storedUser) {
-          const user = JSON.parse(storedUser)
-          this.currentUser = user
-          this.isAuthenticated = true
-        }
-      } catch (error) {
-        console.error('Failed to restore auth state:', error)
-        this.logout()
-      }
+      // Check if user is already authenticated on app startup
+      await this.checkAuthStatus()
     },
 
     async updateProfile(updates) {
@@ -159,9 +184,6 @@ export const useUserStore = defineStore('user', {
         )
         
         this.currentUser = { ...this.currentUser, ...updatedUser }
-        
-        // Update stored user data
-        localStorage.setItem('pin-a-tree-user', JSON.stringify(this.currentUser))
         
         return this.currentUser
       } catch (error) {

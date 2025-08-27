@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Connection Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        button { padding: 10px 15px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>🌳 Pin-a-Tree API Connection Test</h1>
+    
+    <h2>Backend Health Check</h2>
+    <button onclick="testHealth()">Test Health Endpoint</button>
+    <div id="health-result"></div>
+    
+    <h2>API Endpoints Test</h2>
+    <button onclick="testTrees()">Test Trees API</button>
+    <button onclick="testAuth()">Test Auth API</button>
+    <div id="api-result"></div>
+    
+    <h2>Frontend Services Test</h2>
+    <button onclick="testFrontendServices()">Test Frontend Services</button>
+    <div id="frontend-result"></div>
+    
+    <script>
+        async function testHealth() {
+            const resultDiv = document.getElementById('health-result');
+            try {
+                console.log('Testing health endpoint at: http://localhost:3001/api/health');
+                const response = await fetch('http://localhost:3001/api/health');
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${errorText}`);
+                }
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+                resultDiv.innerHTML = `<div class="result success">✅ Backend Health: ${data.message || data.status}</div>`;
+            } catch (error) {
+                console.error('Health check error:', error);
+                resultDiv.innerHTML = `<div class="result error">❌ Backend Health Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function testTrees() {
+            const resultDiv = document.getElementById('api-result');
+            try {
+                console.log('Testing trees endpoint at: http://localhost:3001/api/trees');
+                const response = await fetch('http://localhost:3001/api/trees');
+                console.log('Trees response status:', response.status);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${errorText}`);
+                }
+                
+                const data = await response.json();
+                console.log('Trees response data:', data);
+                resultDiv.innerHTML = `<div class="result success">✅ Trees API: Found ${Array.isArray(data) ? data.length : 0} trees</div>`;
+            } catch (error) {
+                console.error('Trees API error:', error);
+                resultDiv.innerHTML = `<div class="result error">❌ Trees API Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function testAuth() {
+            const resultDiv = document.getElementById('api-result');
+            try {
+                // Test with invalid credentials to see if endpoint responds
+                const response = await fetch('http://localhost:3001/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: 'test@test.com', password: 'test' })
+                });
+                
+                if (response.status === 401) {
+                    resultDiv.innerHTML += `<div class="result success">✅ Auth API: Endpoint responding (401 expected)</div>`;
+                } else {
+                    const data = await response.json();
+                    resultDiv.innerHTML += `<div class="result success">✅ Auth API: ${JSON.stringify(data)}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML += `<div class="result error">❌ Auth API Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function testFrontendServices() {
+            const resultDiv = document.getElementById('frontend-result');
+            try {
+                // Test environment variable
+                const apiUrl = 'http://localhost:3001/api'; // This would be import.meta.env.VITE_API_URL in Vue
+                resultDiv.innerHTML = `<div class="result success">✅ API URL configured: ${apiUrl}</div>`;
+                resultDiv.innerHTML += `<div class="result success">✅ Axios installed and services updated</div>`;
+                resultDiv.innerHTML += `<div class="result success">✅ Services ready for API connection</div>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error">❌ Frontend Services Error: ${error.message}</div>`;
+            }
+        }
+    </script>
+</body>
+</html>

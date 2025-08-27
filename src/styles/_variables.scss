@@ -32,6 +32,31 @@ $text-muted: #666666;
 $danger-color: $error;
 
 // ============================================================================
+// COMPONENT COLOR VARIABLES (for consistency with components)
+// ============================================================================
+
+// Primary colors
+$color-primary: $primary-green;
+$color-primary-light: $light-green;
+$color-primary-dark: darken($primary-green, 10%);
+
+// Background colors
+$color-background: $off-white;
+$color-background-light: lighten($off-white, 2%);
+$color-background-dark: $background-dark;
+
+// Text colors
+$color-text-primary: $text-dark;
+$color-text-secondary: $text-muted;
+
+// UI colors
+$color-border: #E0E0E0;
+$color-error: $error;
+$color-success: $success;
+$color-warning: $warning;
+$color-info: $info;
+
+// ============================================================================
 // TYPOGRAPHY
 // ============================================================================
 
