@@ -1,0 +1,221 @@
+@use 'sass:map';
+
+// SASS Variables for Pin-a-Tree Design System
+// Based on UI/UX documentation specifications and style guide
+
+// ============================================================================
+// BRAND COLORS
+// ============================================================================
+
+$primary-green: #2E7D32;
+$secondary-green: #388E3C;
+$light-green: #A5D6A7;
+$off-white: #F5F5F5;
+$background-dark: #111111;
+$text-primary: #FFFFFF;
+$text-dark: #222222;
+
+// ============================================================================
+// SEMANTIC COLORS
+// ============================================================================
+
+$success: $primary-green;
+$warning: #FFC107;
+$error: #F44336;
+$info: #2196F3;
+
+// Additional semantic colors
+$primary-color: $primary-green;
+$primary-light: $light-green;
+$background-color: $off-white;
+$text-muted: #666666;
+$danger-color: $error;
+
+// ============================================================================
+// COMPONENT COLOR VARIABLES (for consistency with components)
+// ============================================================================
+
+// Primary colors
+$color-primary: $primary-green;
+$color-primary-light: $light-green;
+$color-primary-dark: darken($primary-green, 10%);
+
+// Background colors
+$color-background: $off-white;
+$color-background-light: lighten($off-white, 2%);
+$color-background-dark: $background-dark;
+
+// Text colors
+$color-text-primary: $text-dark;
+$color-text-secondary: $text-muted;
+
+// UI colors
+$color-border: #E0E0E0;
+$color-error: $error;
+$color-success: $success;
+$color-warning: $warning;
+$color-info: $info;
+
+// ============================================================================
+// TYPOGRAPHY
+// ============================================================================
+
+$font-family-primary: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-family-heading: 'Poppins', $font-family-primary;
+
+// Base font size: 1rem = 10px
+$font-size-base: 1.6rem;
+$font-size-small: 1.4rem;
+$font-size-large: 1.8rem;
+$font-size-heading-1: 3.2rem;
+$font-size-heading-2: 2.4rem;
+$font-size-heading-3: 2.0rem;
+$font-size-button: 1.6rem;
+
+// Font weights
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// ============================================================================
+// SPACING
+// ============================================================================
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$spacing-xl: 6rem;
+
+// ============================================================================
+// LAYOUT
+// ============================================================================
+
+$max-content-width: 120rem;
+$border-radius-small: 0.4rem;
+$border-radius-medium: 0.8rem;
+$border-radius-large: 1.2rem;
+$border-radius: $border-radius-medium; // Default border radius
+
+// ============================================================================
+// SHADOWS
+// ============================================================================
+
+$shadow-small: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-large: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+// ============================================================================
+// TRANSITIONS
+// ============================================================================
+
+$transition-fast: 0.15s ease-in-out;
+$transition-normal: 0.25s ease-in-out;
+$transition-slow: 0.35s ease-in-out;
+
+// ============================================================================
+// Z-INDEX
+// ============================================================================
+
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+
+// ============================================================================
+// RESPONSIVE BREAKPOINTS
+// ============================================================================
+
+$breakpoints: (
+  'small': 576px,
+  'medium': 768px, // everything under medium is considered mobile
+  'large': 992px,
+  'xlarge': 1200px,
+  'xxlarge': 1920px,
+);
+
+// ============================================================================
+// MIXINS
+// ============================================================================
+
+@mixin width-at-least($breakpoint) {
+  $value: map.get($breakpoints, $breakpoint);
+  @if $value != null {
+    @media (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "No value for breakpoint `#{$breakpoint}` in $breakpoints map.";
+  }
+}
+
+@mixin width-less-than($breakpoint) {
+  $value: map.get($breakpoints, $breakpoint);
+  @if $value != null {
+    @media (max-width: ($value - 1)) {
+      @content;
+    }
+  } @else {
+    @warn "No value for breakpoint `#{$breakpoint}` in $breakpoints map.";
+  }
+}
+
+@mixin width-between($min, $max) {
+  $min-value: map.get($breakpoints, $min);
+  $max-value: map.get($breakpoints, $max);
+  @if $min-value and $max-value {
+    @media (min-width: $min-value) and (max-width: ($max-value - 1)) {
+      @content;
+    }
+  } @else {
+    @warn "Invalid breakpoint range: #{$min} to #{$max}.";
+  }
+}
+
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-md;
+  border: none;
+  border-radius: $border-radius-large;
+  font-family: $font-family-primary;
+  font-size: $font-size-button;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-normal;
+  
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin card-base {
+  background-color: $background-color;
+  border-radius: $border-radius-large;
+  box-shadow: $shadow-medium;
+  padding: $spacing-md;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

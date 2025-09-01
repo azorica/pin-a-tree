@@ -27,16 +27,25 @@ The application is built with a **strict separation between frontend and backend
 
 ---
 
-## 🔧 Backend (Replaceable API Layer)
+## 🔧 Backend (API Layer)
 
-| Layer        | MVP Option                | Scalable Option                       |
-| ------------ | ------------------------- | ------------------------------------- |
-| Hosting      | **Firebase**              | Supabase / Node + DB                  |
-| Auth         | **Firebase Auth**         | Auth.js / Clerk                       |
-| Database     | **Firestore (NoSQL)**     | PostgreSQL                            |
-| File Storage | **Firebase Storage**      | AWS S3 or equivalent                  |
-| API Layer    | **Cloud Functions / RPC** | REST or GraphQL                       |
-| Geolocation  | **EXIF + Leaflet**        | GPS extraction with map visualization |
+### Production Options
+
+| Layer        | Option 1: Node.js (Recommended) | Option 2: Supabase (Fastest) | Option 3: Firebase          |
+| ------------ | -------------------------------- | ----------------------------- | ---------------------------- |
+| Runtime      | **Node.js 18+ + TypeScript**    | **Supabase Cloud**           | **Firebase**                |
+| Framework    | **Express.js / Fastify**        | **Auto-generated APIs**      | **Cloud Functions**         |
+| Database     | **PostgreSQL + Prisma ORM**     | **PostgreSQL (managed)**     | **Firestore (NoSQL)**       |
+| Auth         | **JWT + bcrypt / Auth.js**      | **Supabase Auth**            | **Firebase Auth**           |
+| File Storage | **AWS S3 / MinIO**              | **Supabase Storage**         | **Firebase Storage**        |
+| API Type     | **RESTful API**                  | **REST + GraphQL**           | **REST + Real-time**        |
+| Testing      | **Jest / Vitest**                | **Supabase CLI**             | **Firebase Emulator**       |
+| Deployment   | **Docker + Railway/Render**     | **Supabase Cloud**           | **Firebase Hosting**        |
+
+### Current MVP Status
+- **Development:** Mock data in `/src/mocks/` and service modules in `/src/services/`
+- **API Layer:** Frontend calls services that return mock JSON data
+- **Next Phase:** Replace mock services with real API calls to chosen backend
 
 > Backend is API-first. Frontend never directly accesses any backend SDK or service.
 

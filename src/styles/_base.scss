@@ -1,0 +1,146 @@
+// Base styles for Pin-a-Tree application
+// Global reset and base typography
+
+@use 'variables' as *;
+
+// ============================================================================
+// RESET & NORMALIZE
+// ============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: 1.6;
+  color: $text-primary;
+  background-color: $background-dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ============================================================================
+// TYPOGRAPHY
+// ============================================================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  margin-bottom: $spacing-sm;
+  color: $text-primary;
+}
+
+h1 {
+  font-size: $font-size-heading-1;
+}
+
+h2 {
+  font-size: $font-size-heading-2;
+}
+
+h3 {
+  font-size: $font-size-heading-3;
+}
+
+p {
+  margin-bottom: $spacing-sm;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: $primary-green;
+  text-decoration: none;
+  transition: color $transition-normal;
+  
+  &:hover,
+  &:focus {
+    color: $secondary-green;
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    outline: 2px solid $primary-green;
+    outline-offset: 2px;
+  }
+}
+
+// ============================================================================
+// FORM ELEMENTS
+// ============================================================================
+
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+// ============================================================================
+// IMAGES
+// ============================================================================
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// ============================================================================
+// UTILITIES
+// ============================================================================
+
+.container {
+  max-width: $max-content-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include width-at-least('medium') {
+    padding: 0 $spacing-lg;
+  }
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.sr-only {
+  @include visually-hidden;
+}
+
+// Skip link for accessibility
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: $primary-green;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: $z-modal;
+  
+  &:focus {
+    top: 6px;
+  }
+}
