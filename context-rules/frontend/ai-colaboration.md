@@ -19,6 +19,7 @@ These rules apply to all developers and AI agents (e.g. Cursor, GitHub Copilot, 
   - `pinia.md`
   - `style-guide.md`
   - `vue.md`
+  - 
 
 ## Using Cursor or Other AI Agents
 
